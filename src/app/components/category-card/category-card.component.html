@@ -1,0 +1,10 @@
+<div class="card" [routerLink]="['/category', category.path]">
+  <div class="image-container">
+      <img *ngIf="category.image !== undefined" [src]="getImageUrl(240, 160, category.image?.fullpath)" alt="{{ category.image.name }}" class="image" />
+      <img *ngIf="category.image === undefined" src="../../../assets/placeholder.jpg" class="image">
+      <div class="image-count" *ngIf="numberOfImages!=null">{{ numberOfImages + " " + getString() }}</div>
+  </div>
+  <div class="info-container">
+      <p>{{category.name}}</p>
+  </div>
+</div>

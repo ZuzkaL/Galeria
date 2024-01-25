@@ -1,0 +1,77 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+    font-family: Verdana, sans-serif; 
+    background-color: #f9f9f9;
+    margin-top: 24px;
+}
+
+.card {
+    border-radius: 4px;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 240px; /* Set a fixed width for each card */
+    transition: box-shadow 0.3s ease; /* Add a smooth transition effect */
+    align-items: center;
+}  
+  
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a shadow on hover */
+}
+
+.card > p {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 13px;
+}
+
+.plus-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #c0c0c0;
+    color: #c0c0c0;
+    width: 24px;
+    height: 24px;
+    font-size: 18px;
+    border-radius: 8px;
+}
+
+.add-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.add-button-dialog{
+    text-align: center;
+    color: white;
+    background-color: black;
+    width: 100%;
+    padding: 8px;
+}
+
+.dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.close-button-dialog {
+    background-color: transparent;
+    border: none;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: -20px;
+}
+
+.example-full-width{
+    width: 100%;
+}

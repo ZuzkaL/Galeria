@@ -1,0 +1,8 @@
+{
+    "/api": {
+      "target": "http://api.programator.sk",
+      "secure": false,
+      "changeOrigin": true
+    }
+  }
+  

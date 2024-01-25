@@ -1,0 +1,4 @@
+<div class="card">
+    <img *ngIf="image!=undefined" [src]="getImageUrl(240, 220, image?.fullpath)" alt="{{ image.name }}" class="image"/>
+    <img *ngIf="image==undefined" src="../../../assets/placeholder.jpg" class="image">
+</div>

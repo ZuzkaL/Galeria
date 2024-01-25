@@ -1,0 +1,23 @@
+<div style="width: 320px;">
+    <div class="dialog-header">
+        <span>
+            <h2 mat-dialog-title>Pridať kategóriu</h2>
+        </span>
+        <button mat-dialog-close class="close-button-dialog">x</button>
+    </div>
+    <div>
+        <div class="custom-input">
+            <label for="fileInput" (drop)="handleDrop($event)" (dragover)="handleDragOver($event)">
+                <div *ngIf="!selectedImage" class="input-label">
+                    <img src="../../../../assets/image.png" alt="Image" class="icon">
+                    <p class="first-label">Sem presuňte fotky</p>
+                    <p class="second-label">alebo</p>
+                    <p class="third-label">Vyberte súbor</p>
+                </div>
+                <img *ngIf="selectedImage" [src]="selectedImage" alt="Selected Image" class="preview-image">
+            </label>
+            <input type="file" id="fileInput" (change)="handleFileInput($event)" style="display: none;">
+        </div>
+    </div>
+    <button class="add-button-dialog" (click)="addCategoryImage()">Pridať</button>
+</div>

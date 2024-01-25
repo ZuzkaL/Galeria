@@ -1,0 +1,17 @@
+<!-- categories.component.html -->
+<div *ngIf="!isLoading">
+    <p id="title">Kategórie</p>
+    <div class="categories-container" [style.maxWidth]="calcWidthOfContainer()">
+        <div *ngFor="let category of categories">
+          <app-category-card [category]="category"></app-category-card>
+        </div>
+        <div class="card add-card"  [style.height]="'220px'" (click)="openAddCategoryDialog()">
+            <div class="plus-icon">+</div>
+            <p>Pridať kategóriu</p>
+        </div>
+    </div>
+  
+    <div *ngIf="categories.length === 0">
+        <p>Zatiaľ neexistujú žiadne kategórie.</p>
+    </div>
+</div>

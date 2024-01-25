@@ -1,0 +1,38 @@
+  img {
+    width: 240px;
+    height: 160px;
+    object-fit: cover;
+    transition: transform 0.3s ease; /* Add a smooth transition effect */
+  }
+  
+  .card:hover img {
+    transform: scale(1.1); /* Enlarge the image on hover */
+  }
+  
+  .info-container {
+    justify-content: space-between;
+    
+  }
+
+  .info-container > p {
+    text-align: center;
+  } 
+  
+  .card {
+    position: relative;
+}
+
+.image-container {
+    position: relative;
+}
+
+.image-count {
+  position: absolute;
+  top: 5px; 
+  left: 5px; 
+  background-color: rgba(0,0,0, 0.2);
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+}
