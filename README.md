@@ -38,22 +38,16 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## TODO
 
- 
-### okno obrazka
-
-- [ ]  posuvanie sa
-
-
-
-### celkovo
-
-- [ ] poformatovat vsetko
-- [ ] sirka karticky na jednom mieste
+### celkovo - features
 - [ ] loading
-- [ ] osetrit aby to bolo co najlepsie 
+- [ ] posuvanie sa v obrazkoch
+
+### celkovo - nice to have
+- [ ] errory osetrit
+- [ ] sirka karticky na jednom mieste
 - [ ] ak su vacsie texty tak zarovnat aby boli 3 bodky
 - [ ] cursor menit vsade kde sa da kliknut, a kde sa neda (disabled buttons)
-- [ ] errory osetrit
 - [ ] dark mode podľa toho ako je nastavený systém
 - [ ] cors policy pri nahrati obrazka
-- [ ] animácia na kartičky
+- [ ] osetrit aby to bolo co najlepsie 
+- [ ] poformatovat vsetko
