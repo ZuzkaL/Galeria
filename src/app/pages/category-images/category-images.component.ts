@@ -59,17 +59,4 @@ export class CategoryImagesComponent implements OnInit {
       }
     });
   }
-
-  openFullSizeImageDialog(fullPath: any): void {
-    // TODO: pridat posuvanie
-    console.log(fullPath)
-    this.dialog.open(ImageDialogComponent, {
-      data: { 
-        path:fullPath
-       },
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      panelClass: 'full-size-image-dialog',
-    });
-  }
 }

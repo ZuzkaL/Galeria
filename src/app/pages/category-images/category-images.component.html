@@ -4,7 +4,7 @@
     </div>
     <div class="images-container" [style.maxWidth]="calcWidthOfContainer()">
         <div *ngFor="let image of images">
-            <app-image-card [image]="image" (click)="openFullSizeImageDialog(image.fullpath)"></app-image-card>
+            <app-image-card [image]="image"></app-image-card>
         </div>
         <div class="card add-card" [style.height]="'220px'" (click)="openAddImageDialog()">
             <div class="plus-icon">+</div>

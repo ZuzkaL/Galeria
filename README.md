@@ -15,6 +15,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 - Animations (on hover over cards)
 - Filtering and sorting based on the name
 - Delete of category
+- Delete of image
 
 ---
 
@@ -24,7 +25,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 - dark mode podľa toho ako je nastavený systém (vytvoriť tmavú verziu)
 - filtrovanie a sortovanie kategórií (podľa počtu obrázkov + vyhľadať podľa názvu)
 - delete na veci (kategória a obrázok)
-- auth a hosting (len mail ktorý pridám sa môže dostať ďalej, auth cez firebase by bol)
+- hosting
 - lokalizácia
 
 ## TODO
@@ -32,7 +33,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ### celkovo - features
 - posuvanie sa v obrazkoch
 - loading
-- delete na obrazky
 - auth a hosting (len mail ktorý pridám sa môže dostať ďalej, auth cez firebase by bol)
 
 ### celkovo - nice to have

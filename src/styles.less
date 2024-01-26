@@ -16,6 +16,7 @@ body{
     width: 240px; /* Set a fixed width for each card */
     transition: box-shadow 0.3s ease; /* Add a smooth transition effect */
     align-items: center;
+    position:relative
 }  
 
 .card:hover {
@@ -127,4 +128,21 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color: transparent;
     box-sizing: border-box;
     cursor: pointer;
+  }
+
+  
+.delete-button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: rgb(54, 54, 54); /* Customize the color as needed */
+    color: white;
+    border: none;
+    transform: scale(0.8);
+    cursor: pointer;
+    display: none; /* Hidden by default, visible on hover */
+  }
+  
+  .card:hover .delete-button {
+    display: block;
   }

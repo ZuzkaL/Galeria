@@ -14,18 +14,18 @@ export class CategoryCardComponent implements OnInit{
   @Input() category: any;
   numberOfImages=null;
   showDeleteButton = false;
-  private categoriesComponentInstance: CategoriesComponent | null = null;
 
-
-  constructor(private galleryApiService: GalleryApiService, private dialog: MatDialog,private sharedService: SharedService) {
+  constructor(
+    private galleryApiService: GalleryApiService, 
+    private dialog: MatDialog,
+    private sharedService: SharedService
+    ) {
   }
-
 
   ngOnInit(): void {
     this.loadCategoryImages()
   }
   
-  // Helper function to construct the image URL
   getImageUrl(width: number, height: number, path: string): string {
     return this.galleryApiService.getImageUrl(width, height, path);
   }
@@ -65,7 +65,7 @@ export class CategoryCardComponent implements OnInit{
       cancelButtonText: 'Nie',
       onConfirm: () => {
         this.galleryApiService.deleteCategoryOrImageByPath(this.category.path).then(
-          (a)=>this.sharedService.triggerCategoriesReload()
+          ()=>this.sharedService.triggerCategoriesReload()
         )
       }
     };
