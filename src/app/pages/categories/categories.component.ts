@@ -69,7 +69,7 @@ export class CategoriesComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   calcWidthOfContainer(){
     const vw = window.innerWidth;
-    const result = (260 * Math.floor(( vw / 260)));
+    const result = (260 * Math.floor(( vw / 270)));
     return result+"px"
   }
 
