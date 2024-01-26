@@ -10,12 +10,18 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
+## Hosting
+Firstly you need to allow site to view on this link.  (https://api.programator.sk/gallery)
+Then you can load from this site. (https://bart-galeria.web.app/categories)
+
+
 # Added Features
 
 - Animations (on hover over cards)
 - Filtering and sorting based on the name
 - Delete of category
 - Delete of image
+- Hosting
 
 ---
 
@@ -26,14 +32,12 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 - filtrovanie a sortovanie kategórií (podľa počtu obrázkov + vyhľadať podľa názvu)
 - delete na veci (kategória a obrázok)
 - hosting
-- lokalizácia
 
 ## TODO
 
 ### celkovo - features
 - posuvanie sa v obrazkoch
 - loading
-- auth a hosting (len mail ktorý pridám sa môže dostať ďalej, auth cez firebase by bol)
 
 ### celkovo - nice to have
 - errory osetrit

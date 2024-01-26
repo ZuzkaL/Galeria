@@ -7,7 +7,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
   providedIn: 'root',
 })
 export class GalleryApiService {
-  private apiUrl = 'http://api.programator.sk'; 
+  private apiUrl = 'https://api.programator.sk'; 
   
 
   constructor(private http: HttpClient) {}
