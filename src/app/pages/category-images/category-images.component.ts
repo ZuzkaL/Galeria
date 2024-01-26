@@ -54,7 +54,9 @@ export class CategoryImagesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
-      //TODO: ak success, tak reload
+      if(result.success){
+        this.loadCategoryImages()
+      }
     });
   }
 

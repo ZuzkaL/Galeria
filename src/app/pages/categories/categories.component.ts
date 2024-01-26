@@ -46,7 +46,9 @@ export class CategoriesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
-      // TODO ak success tak potom reload objekty
+      if(result.success){
+        this.loadCategories()
+      }
     });
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { GalleryApiService } from 'src/app/services/gallery-api.service';
 
 @Component({
@@ -8,7 +9,10 @@ import { GalleryApiService } from 'src/app/services/gallery-api.service';
 })
 export class AddCategoryImageDialogComponent implements OnInit {
 
-  constructor(private galleryApiService: GalleryApiService) { }
+  constructor(
+    public dialogRef: MatDialogRef<AddCategoryImageDialogComponent>, 
+    private galleryApiService: GalleryApiService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -49,11 +53,11 @@ export class AddCategoryImageDialogComponent implements OnInit {
       this.galleryApiService.uploadImage(file.name, file)
         .then(response => {
           console.log('Image uploaded successfully:', response);
-          // Handle success, if needed
+          this.dialogRef.close({ success: true });
         })
         .catch(error => {
           console.error('Error uploading image:', error);
-          // Handle error, if needed
+          // TODO: Handle error, if needed
         });
     }
   }

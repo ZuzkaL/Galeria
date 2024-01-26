@@ -15,10 +15,6 @@ export class AddCategoryDialogComponent {
     private galleryApiService: GalleryApiService
   ) { }
 
-  closeDialog(): void {
-    this.dialogRef.close();
-  }
-
   handleFileInput(event: Event): void {
     // Handle the file input here
     const inputElement = event.target as HTMLInputElement;
@@ -45,8 +41,7 @@ export class AddCategoryDialogComponent {
     this.galleryApiService.createCategory(this.name)
       .then(response => {
         console.log('Category created successfully:', response);
-        window.location.reload()
-        // Handle success, if needed
+        this.dialogRef.close({ success: true });
       })
       .catch(error => {
         console.error('Error creating category:', error);
