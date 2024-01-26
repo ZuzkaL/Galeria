@@ -1,5 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { GalleryApiService } from 'src/app/services/gallery-api.service';
+import { ConfirmationDialogComponent, ConfirmationDialogData } from '../dialogs/confirmation-dialog/confirmation-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { CategoriesComponent } from 'src/app/pages/categories/categories.component';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-category-card',
@@ -9,9 +13,14 @@ import { GalleryApiService } from 'src/app/services/gallery-api.service';
 export class CategoryCardComponent implements OnInit{
   @Input() category: any;
   numberOfImages=null;
+  showDeleteButton = false;
+  private categoriesComponentInstance: CategoriesComponent | null = null;
 
-  constructor(private galleryApiService: GalleryApiService) {
+
+  constructor(private galleryApiService: GalleryApiService, private dialog: MatDialog,private sharedService: SharedService) {
   }
+
+
   ngOnInit(): void {
     this.loadCategoryImages()
   }
@@ -45,5 +54,24 @@ export class CategoryCardComponent implements OnInit{
         return "fotiek"
       }
     }
+  }
+
+
+  onDelete(){
+    const confirmationDialogData: ConfirmationDialogData = {
+      title: 'Odstrániť kategóriu "'+this.category.name+'"?',
+      description: 'Naozaj si želáte odstrániť kategóriu "'+this.category.name+'"?',
+      confirmButtonText: 'Áno',
+      cancelButtonText: 'Nie',
+      onConfirm: () => {
+        this.galleryApiService.deleteCategoryOrImageByPath(this.category.path).then(
+          (a)=>this.sharedService.triggerCategoriesReload()
+        )
+      }
+    };
+    this.dialog.open(ConfirmationDialogComponent, {
+      width: '400px',
+      data: confirmationDialogData
+    });
   }
 }

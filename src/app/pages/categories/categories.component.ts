@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddCategoryDialogComponent } from 'src/app/components/dialogs/add-category-dialog/add-category-dialog.component';
 import { GalleryApiService } from 'src/app/services/gallery-api.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-categories',
@@ -17,11 +18,15 @@ export class CategoriesComponent implements OnInit {
 
   constructor(
     private galleryApiService: GalleryApiService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private sharedService: SharedService 
   ) { }
 
   ngOnInit(): void {
     this.loadCategories();
+    this.sharedService.reloadCategories$.subscribe(() => {
+      this.loadCategories(); 
+    });
   }
 
   loadCategories() {
@@ -70,11 +75,10 @@ export class CategoriesComponent implements OnInit {
 
   openAddCategoryDialog(){
     const dialogRef = this.dialog.open(AddCategoryDialogComponent);
-
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
       if(result.success){
-        this.loadCategories()
+        this.sharedService.triggerCategoriesReload();
       }
     });
   }

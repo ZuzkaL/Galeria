@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
+import { ConfirmationDialogComponent } from './components/dialogs/confirmation-dialog/confirmation-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import {MatMenuModule} from '@angular/material/menu';
     ImageCardComponent,
     AddCategoryDialogComponent,
     AddCategoryImageDialogComponent,
-    ImageDialogComponent
+    ImageDialogComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,

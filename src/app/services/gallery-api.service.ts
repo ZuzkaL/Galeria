@@ -78,4 +78,13 @@ export class GalleryApiService {
       .catch(this.handleError);
   }
 
+  deleteCategoryOrImageByPath(path: string): Promise<any> {
+    const url = `${this.apiUrl}/gallery/${path}`;
+
+    return this.http.delete(url)
+      .toPromise()
+      .then((response: any) => response)
+      .catch(this.handleError);
+  }
+
 }

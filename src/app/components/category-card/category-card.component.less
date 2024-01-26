@@ -36,3 +36,20 @@
   border-radius: 5px;
   font-size: 12px;
 }
+
+
+.delete-button {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: rgb(54, 54, 54); /* Customize the color as needed */
+  color: white;
+  border: none;
+  transform: scale(0.8);
+  cursor: pointer;
+  display: none; /* Hidden by default, visible on hover */
+}
+
+.card:hover .delete-button {
+  display: block;
+}
