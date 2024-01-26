@@ -38,15 +38,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## TODO
 
-### categories
-
-- [ ] filtrovanie (vybrať názov, alebo počet čísel)
-- [ ] sortovanie (podľa počtu obrázkov, názvu kategórie)
-
  
 ### okno obrazka
 
-- [x]  zobrazenie obrazka
 - [ ]  posuvanie sa
 
 
@@ -62,7 +56,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - [ ] errory osetrit
 - [ ] dark mode podľa toho ako je nastavený systém
 - [ ] cors policy pri nahrati obrazka
-
-
-## Next
-- [] popratat kod
+- [ ] animácia na kartičky

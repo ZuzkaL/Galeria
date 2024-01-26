@@ -10,7 +10,10 @@ import { GalleryApiService } from 'src/app/services/gallery-api.service';
 })
 export class CategoriesComponent implements OnInit {
   categories: any[] = [];
+  shownCategories : any[] = [];
   isLoading = true
+  searchValue = ""
+  sortAscending = true;
 
   constructor(
     private galleryApiService: GalleryApiService,
@@ -25,13 +28,37 @@ export class CategoriesComponent implements OnInit {
     this.galleryApiService.getCategories()
       .then((categories) => {
         this.categories = categories.galleries;
-        console.log("category", categories)
+        this.filterCategories();
         this.isLoading=false
+        this.shownCategories = categories.galleries
       })
       .catch((error) => {
         console.error('Error loading categories:', error);
         // TODO: Môžeš spracovať chybu a informovať používateľa
       });
+  }
+  filterCategories() {
+    this.shownCategories = this.categories.filter(category =>
+      category.name.toLowerCase().includes(this.searchValue.toLowerCase())
+    );
+  }
+
+  toggleSortOrder(isAscending:boolean) {
+    this.sortAscending = isAscending;
+    this.sortCategories();
+  }
+
+  sortCategories() {
+    this.shownCategories.sort((a, b) => {
+      const nameA = a.name.toUpperCase();
+      const nameB = b.name.toUpperCase();
+      return this.sortAscending ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+    });
+  }
+
+  onInputChange(){
+    console.log("a",this.searchValue)
+    this.filterCategories()
   }
 
   @HostListener('window:resize', ['$event'])

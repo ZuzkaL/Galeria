@@ -75,3 +75,55 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .example-full-width{
     width: 100%;
 }
+
+.left-side, .right-side {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .left-side {
+    width: 50%; /* Adjust the width as needed */
+  }
+
+  .right-side {
+    width: 50%; /* Adjust the width as needed */
+  }
+
+  .small-icon{
+    transform: scale(0.8);
+  }
+
+  .right{
+    float: right;
+  }
+
+  .custom-search-input {
+    position: relative;
+    height: 24px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .input-field {
+    height: 100%;
+    width: calc(100% - 30px); /* Adjust the width as needed */
+    outline: none;
+    padding: 5px;
+    background-color: transparent;
+    box-sizing: border-box;
+    border: none;
+  }
+
+  .search-icon-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
