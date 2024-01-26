@@ -7,7 +7,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
   providedIn: 'root',
 })
 export class GalleryApiService {
-  private apiUrl = 'https://api.programator.sk'; 
+  private apiUrl = 'http://api.programator.sk'; 
   
 
   constructor(private http: HttpClient) {}
@@ -60,16 +60,17 @@ export class GalleryApiService {
   }
 
   uploadImage(path: string, file: File): Promise<any> {
-    console.log("image",path,file)
+    console.log("image\npath:",path,'\nfile',file)
     const url = `${this.apiUrl}/gallery/${path}`;
     
     const formData = new FormData();
-    formData.append('image', file, file.name);
+    formData.append('image', file);
 
     const headers = new HttpHeaders({
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'POST',
-      'Access-Control-Allow-Headers': 'Origin'
+      'Access-Control-Allow-Headers': 'Content-Type',
+
     });
 
     return this.http.post(url, formData, { headers })

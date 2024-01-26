@@ -6,6 +6,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
+* You need to turn off yours CORS, here is command for windows: ./chrome.exe --user-data-dir="C://chrome-dev-disabled-security" --disable-web-security --disable-site-isolation-trials
+
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
@@ -37,7 +39,7 @@ Then you can load from this site. (https://bart-galeria.web.app/categories)
 
 ### celkovo - features
 - posuvanie sa v obrazkoch
-- loading
+- loading 
 
 ### celkovo - nice to have
 - dialogove okna (responyivnost pri mobile)
@@ -45,6 +47,7 @@ Then you can load from this site. (https://bart-galeria.web.app/categories)
 - sirka karticky na jednom mieste
 - ak su vacsie texty tak zarovnat aby boli 3 bodky
 - dark mode podľa toho ako je nastavený systém
+- osetrit ze ak je obrazok v all galerii ale nie je v db, tak neukazovat
 - cors policy pri nahrati obrazka
 - osetrit aby to bolo co najlepsie
     - vymazat importy zbytocne
