@@ -19,7 +19,7 @@
             </div>
         </span>
     </div>
-    <div class="categories-container" [style.maxWidth]="calcWidthOfContainer()">
+    <div class="categories-container">
         <div *ngFor="let category of shownCategories">
             <app-category-card [category]="category"></app-category-card>
         </div>

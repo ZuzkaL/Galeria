@@ -66,12 +66,6 @@ export class CategoriesComponent implements OnInit {
     this.filterCategories()
   }
 
-  @HostListener('window:resize', ['$event'])
-  calcWidthOfContainer(){
-    const vw = window.innerWidth;
-    const result = (260 * Math.floor(( vw / 270)));
-    return result+"px"
-  }
 
   openAddCategoryDialog(){
     const dialogRef = this.dialog.open(AddCategoryDialogComponent);

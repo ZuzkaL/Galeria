@@ -2,7 +2,7 @@
     <div [routerLink]="['/']" class="arrow-text">
         {{gallery.name}}
     </div>
-    <div class="images-container" [style.maxWidth]="calcWidthOfContainer()">
+    <div class="images-container">
         <div *ngFor="let image of images">
             <app-image-card [image]="image"></app-image-card>
         </div>

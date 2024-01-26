@@ -42,13 +42,6 @@ export class CategoryImagesComponent implements OnInit {
       });
   }
 
-  @HostListener('window:resize', ['$event'])
-  calcWidthOfContainer(){
-    const vw = window.innerWidth;
-    const result = (265 * Math.floor(( vw / 265)));
-    return result+"px"
-  }
-
   openAddImageDialog(){
     const dialogRef = this.dialog.open(AddCategoryImageDialogComponent);
 
