@@ -40,11 +40,14 @@ Then you can load from this site. (https://bart-galeria.web.app/categories)
 - loading
 
 ### celkovo - nice to have
+- dialogove okna (responyivnost pri mobile)
 - errory osetrit
 - sirka karticky na jednom mieste
 - ak su vacsie texty tak zarovnat aby boli 3 bodky
-- cursor menit vsade kde sa da kliknut, a kde sa neda (disabled buttons)
 - dark mode podľa toho ako je nastavený systém
 - cors policy pri nahrati obrazka
-- osetrit aby to bolo co najlepsie 
+- osetrit aby to bolo co najlepsie
+    - vymazat importy zbytocne
+    - prejst kazdy subor a poriesit co je naviac
+    - pokomentovat kod
 - poformatovat vsetko

@@ -43,7 +43,12 @@ export class CategoryImagesComponent implements OnInit {
   }
 
   openAddImageDialog(){
-    const dialogRef = this.dialog.open(AddCategoryImageDialogComponent);
+    const dialogRef = this.dialog.open(AddCategoryImageDialogComponent, {
+      data: {
+        categoryPath: this.gallery.path,
+        categoryName: this.gallery.name
+      }
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

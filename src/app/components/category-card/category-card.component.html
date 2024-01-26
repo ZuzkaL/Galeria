@@ -1,4 +1,4 @@
-<div class="card" (mouseover)="showDeleteButton=true">
+<div class="card clickable" (mouseover)="showDeleteButton=true">
   <div [routerLink]="['/category', category.path]">
     <div class="image-container">
       <img *ngIf="category.image !== undefined" [src]="getImageUrl(240, 160, category.image?.fullpath)"

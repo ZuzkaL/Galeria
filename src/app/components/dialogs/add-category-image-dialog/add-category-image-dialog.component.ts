@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { GalleryApiService } from 'src/app/services/gallery-api.service';
 
 @Component({
@@ -10,7 +10,8 @@ import { GalleryApiService } from 'src/app/services/gallery-api.service';
 export class AddCategoryImageDialogComponent implements OnInit {
 
   constructor(
-    public dialogRef: MatDialogRef<AddCategoryImageDialogComponent>, 
+    public dialogRef: MatDialogRef<AddCategoryImageDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any, 
     private galleryApiService: GalleryApiService
   ) { }
 
@@ -50,7 +51,7 @@ export class AddCategoryImageDialogComponent implements OnInit {
     // Make sure you have a valid path for your category
     if (this.selectedImage) {
       const file = this.dataURLtoFile(this.selectedImage, 'image.png'); // Convert base64 to File
-      this.galleryApiService.uploadImage(file.name, file)
+      this.galleryApiService.uploadImage(this.data?.categoryPath, file)
         .then(response => {
           console.log('Image uploaded successfully:', response);
           this.dialogRef.close({ success: true });

@@ -36,7 +36,6 @@ export class GalleryApiService {
   private handleError(error: HttpErrorResponse): Promise<any> {
     if (error.status === 500) {
       console.error('Internal Server Error');
-      // Môžeš vykonať ďalšie kroky v prípade chyby 500
     } else {
       console.error('An error occurred:', error.error.message || error.statusText);
     }
@@ -61,6 +60,7 @@ export class GalleryApiService {
   }
 
   uploadImage(path: string, file: File): Promise<any> {
+    console.log("image",path,file)
     const url = `${this.apiUrl}/gallery/${path}`;
     
     const formData = new FormData();

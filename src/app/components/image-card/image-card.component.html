@@ -1,4 +1,4 @@
-<div class="card" (mouseover)="showDeleteButton=true" *ngIf="!isDeleted">
+<div class="card clickable" (mouseover)="showDeleteButton=true" *ngIf="!isDeleted">
     <div  (click)="openFullSizeImageDialog(image.fullpath)">
         <img *ngIf="image!=undefined" [src]="getImageUrl(240, 220, image?.fullpath)" alt="{{ image.name }}" class="image"/>
         <img *ngIf="image==undefined" src="../../../assets/placeholder.jpg" class="image">

@@ -3,10 +3,10 @@
     <div>
         <span id="title">Kategórie</span>
         <span class="right">
-            <mat-icon [matMenuTriggerFor]="menu" class="small-icon">sort</mat-icon>
+            <mat-icon [matMenuTriggerFor]="menu" class="small-icon clickable">sort</mat-icon>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="toggleSortOrder(true)"> Zoradiť vzostupne</button>
-                <button mat-menu-item (click)="toggleSortOrder(false)"> Zoradiť zostupne</button>
+                <button mat-menu-item (click)="toggleSortOrder(true)">Zoradiť vzostupne</button>
+                <button mat-menu-item (click)="toggleSortOrder(false)">Zoradiť zostupne</button>
             </mat-menu>
         </span>
         <span class="right">
@@ -23,7 +23,7 @@
         <div *ngFor="let category of shownCategories">
             <app-category-card [category]="category"></app-category-card>
         </div>
-        <div class="card add-card" [style.height]="'220px'" (click)="openAddCategoryDialog()">
+        <div class="card clickable add-card" [style.height]="'220px'" (click)="openAddCategoryDialog()">
             <div class="plus-icon">+</div>
             <p>Pridať kategóriu</p>
         </div>
