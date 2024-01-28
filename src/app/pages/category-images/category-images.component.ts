@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -17,14 +17,14 @@ export class CategoryImagesComponent implements OnInit {
   images: any[] = [];
   gallery: any = null;
   isLoading = true;
-  doesThisCategoryExist=true
+  doesThisCategoryExist = true
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private galleryApiService: GalleryApiService,
     public dialog: MatDialog,
     private translate: TranslateService
-    ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -33,23 +33,25 @@ export class CategoryImagesComponent implements OnInit {
     });
   }
 
+  //  Loads images for the selected category.
   loadCategoryImages() {
     this.galleryApiService.getCategoryImages(this.categoryPath)
       .then((category) => {
         this.images = category.images
         this.gallery = category.gallery
-        console.log("images",category)
+        console.log("images", category)
         this.isLoading = false
       })
       .catch((error) => {
         console.error('Error loading category images:', error);
-        if(error.code==404){
-          this.doesThisCategoryExist=false
+        if (error.code == 404) {
+          this.doesThisCategoryExist = false
         }
       });
   }
 
-  openAddImageDialog(){
+  // Opens the dialog for adding a new image to the category.
+  openAddImageDialog() {
     const dialogRef = this.dialog.open(AddCategoryImageDialogComponent, {
       data: {
         categoryPath: this.gallery.path,
@@ -59,17 +61,18 @@ export class CategoryImagesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
-      if(result.success){
+      if (result?.success) {
         this.loadCategoryImages()
       }
     });
   }
 
+  // Opens a dialog displaying a full-size image.
   openFullSizeImageDialog(index: number): void {
     this.dialog.open(ImageOverlayComponent, {
       data: {
-        index:index,
-        allImages:this.images
+        index: index,
+        allImages: this.images
       },
       maxWidth: '100vw',
       maxHeight: '100vh',
@@ -77,6 +80,7 @@ export class CategoryImagesComponent implements OnInit {
     });
   }
 
+  // Handles the deletion of an image.
   onDeleteImage(index: number) {
     const confirmationDialogData: ConfirmationDialogData = {
       title: this.translate.instant("delete-image-title"),
@@ -85,24 +89,23 @@ export class CategoryImagesComponent implements OnInit {
       cancelButtonText: this.translate.instant("no"),
       onConfirm: () => {
         this.galleryApiService.deleteCategoryOrImageByPath(this.images[index].fullpath)
-        .then(
-          () => {
+          .then(
+            () => {
               this.loadCategoryImages()
-          }
-        ).catch((error) => {
-          if (error.code === 404) {
-            // Handle 404 error (category does not exist)
-            alert(this.translate.instant("image-not-found"));
-          } else {
-            // Handle other errors
-            console.error('Error deleting image:', error);
-            alert(this.translate.instant("delete-image-error"));
-          }
-        });
+            }
+          ).catch((error) => {
+            if (error.code === 404) {
+              // Handle 404 error (category does not exist)
+              alert(this.translate.instant("image-not-found"));
+            } else {
+              // Handle other errors
+              console.error('Error deleting image:', error);
+              alert(this.translate.instant("delete-image-error"));
+            }
+          });
       }
     };
     this.dialog.open(ConfirmationDialogComponent, {
-      width: '400px',
       data: confirmationDialogData
     });
   }

@@ -9,11 +9,12 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
   title = 'galeria';
 
+  // Updates the width of the container based on the window resize event.
   @HostListener('window:resize', ['$event'])
-  calcWidthOfContainer(){
+  calcWidthOfContainer() {
     const vw = window.innerWidth;
-    const result = (260 * Math.floor(( vw / 270)));
-    return result+"px"
+    const result = (260 * Math.floor((vw / 270)));
+    return result + "px"
   }
 
   constructor(private translate: TranslateService) {
@@ -21,7 +22,8 @@ export class AppComponent {
     translate.use('sk');
   }
 
-  chooseLanguage(lang:string){
+  // Changes the language for translation.
+  chooseLanguage(lang: string) {
     this.translate.use(lang)
   }
 }

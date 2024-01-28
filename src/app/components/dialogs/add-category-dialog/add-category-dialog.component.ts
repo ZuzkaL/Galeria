@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { GalleryApiService } from 'src/app/services/gallery-api.service';
@@ -10,7 +10,7 @@ import { GalleryApiService } from 'src/app/services/gallery-api.service';
 })
 export class AddCategoryDialogComponent {
   name: string = "";
-  doesCategoryWithThisNameExist=false
+  doesCategoryWithThisNameExist = false
 
   constructor(
     public dialogRef: MatDialogRef<AddCategoryDialogComponent>,
@@ -18,27 +18,9 @@ export class AddCategoryDialogComponent {
     private tranlsate: TranslateService
   ) { }
 
-  handleFileInput(event: Event): void {
-    // Handle the file input here
-    const inputElement = event.target as HTMLInputElement;
-    const files = inputElement.files;
-    if (files && files.length > 0) {
-      // Perform actions with the selected file(s)
-      console.log(files);
-    }
-  }
 
-  handleDrop(event: DragEvent): void {
-    event.preventDefault();
-    // Perform actions with the dropped file(s)
-    console.log(event);
-  }
-
-  openFileDialog(): void {
-    // Trigger the file input click programmaticall
-    console.log("a")
-  }
-
+  // Add a new category.
+  // Closes the dialog if successful or handles errors. 
   addCategory() {
     this.galleryApiService.createCategory(this.name)
       .then(response => {
@@ -51,10 +33,10 @@ export class AddCategoryDialogComponent {
         if (error.code == 409) {
           this.doesCategoryWithThisNameExist = true
         } else {
-            if(error.code==400){
-              window.alert(this.tranlsate.instant("image-does-not-meet-requirements"))
-            }
+          if (error.code == 400) {
+            window.alert(this.tranlsate.instant("image-does-not-meet-requirements"))
           }
+        }
       });
   }
 }

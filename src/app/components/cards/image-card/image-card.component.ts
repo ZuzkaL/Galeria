@@ -12,38 +12,41 @@ export class ImageCardComponent implements OnInit {
   @Output() deleteClicked = new EventEmitter<void>();
   showDeleteButton = false;
   isDeleted = false;
-  imageUrl=""
+  imageUrl = '';
+
   constructor(
     private galleryApiService: GalleryApiService,
     private el: ElementRef
-  ) { 
-  }
+  ) { }
+
   ngOnInit(): void {
-    this.imageUrl = this.getImageUrl(this.image?.fullpath)
+    this.imageUrl = this.getImageUrl(this.image?.fullpath);
   }
 
+
+  // Get the image URL using the width, height, and path.
   getImageUrl(path: string): string {
-    // Get the element with the ID 'image-container'
     const imageContainer = this.el.nativeElement.querySelector('#image-container');
 
     // Check if the element is found
     if (imageContainer) {
-      // Get the width and height of the element
       const width = imageContainer.clientWidth;
       const height = imageContainer.clientHeight;
 
-      // Call the galleryApiService method with the obtained width, height, and path
       return this.galleryApiService.getImageUrl(width, height, path);
     } else {
-      // Handle the case where the element is not found
       return ''; // or return a default URL or handle it as needed
     }
   }
 
+
+  // Emit event to open overlay when the card is clicked.
   openOverlay() {
     this.cardClicked.emit();
   }
 
+
+  // Emit event to delete the image when the delete button is clicked.
   onDelete(event: Event) {
     // Stop event propagation to prevent opening the overlay
     event.stopPropagation();

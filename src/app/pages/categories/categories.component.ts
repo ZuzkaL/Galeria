@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { AddCategoryDialogComponent } from 'src/app/components/dialogs/add-category-dialog/add-category-dialog.component';
@@ -12,7 +12,7 @@ import { SharedService } from 'src/app/services/shared.service';
 })
 export class CategoriesComponent implements OnInit {
   categories: any[] = [];
-  shownCategories : any[] = [];
+  shownCategories: any[] = [];
   isLoading = true
   searchValue = ""
   sortAscending = true;
@@ -20,41 +20,47 @@ export class CategoriesComponent implements OnInit {
   constructor(
     private galleryApiService: GalleryApiService,
     public dialog: MatDialog,
-    private sharedService: SharedService ,
+    private sharedService: SharedService,
     private translate: TranslateService
-  ) { 
+  ) {
   }
 
   ngOnInit(): void {
     this.loadCategories();
     this.sharedService.reloadCategories$.subscribe(() => {
-      this.loadCategories(); 
+      this.loadCategories();
     });
   }
 
+
+  // Loads categories from the gallery API.
   loadCategories() {
     this.galleryApiService.getCategories()
       .then((categories) => {
         this.categories = categories.galleries;
         this.filterCategories();
-        this.isLoading=false
+        this.isLoading = false
         this.shownCategories = categories.galleries
       })
       .catch((error) => {
         console.error('Error loading categories:', error);
       });
   }
+
+  // Filters categories based on the search input.
   filterCategories() {
     this.shownCategories = this.categories.filter(category =>
       category.name.toLowerCase().includes(this.searchValue.toLowerCase())
     );
   }
 
-  toggleSortOrder(isAscending:boolean) {
+  // Toggles the sorting order of categories.
+  toggleSortOrder(isAscending: boolean) {
     this.sortAscending = isAscending;
     this.sortCategories();
   }
 
+  // Sorts the displayed categories based on the current sorting order.
   sortCategories() {
     this.shownCategories.sort((a, b) => {
       const nameA = a.name.toUpperCase();
@@ -63,17 +69,17 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-  onInputChange(){
-    console.log("a",this.searchValue)
+  // Handles input change in the search field.
+  onInputChange() {
     this.filterCategories()
   }
 
-
-  openAddCategoryDialog(){
+  // Opens the dialog for adding a new category.
+  openAddCategoryDialog() {
     const dialogRef = this.dialog.open(AddCategoryDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
-      if(result.success){
+      if (result?.success) {
         this.sharedService.triggerCategoriesReload();
       }
     });

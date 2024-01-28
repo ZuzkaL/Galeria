@@ -1,18 +1,18 @@
 <div *ngIf="isLoaded; else skeleton">
   <div *ngIf="isLoadedRight" class="card clickable" (mouseover)="showDeleteButton=true">
-  <div [routerLink]="['/category', category.path]">
-    <div id="image-container">
-      <img *ngIf="category.image !== undefined" [src]="getImageUrl(category.image?.fullpath)"
-        alt="{{ category.image.name }}" class="image" />
-      <img *ngIf="category.image === undefined" src="../../../assets/placeholder.jpg" class="image">
-      <div class="image-count" *ngIf="numberOfImages!=null">{{ numberOfImages + " " + getString() }}</div>
+    <div [routerLink]="['/category', category.path]">
+      <div id="image-container">
+        <img *ngIf="category.image !== undefined" [src]="getImageUrl(category.image?.fullpath)"
+          alt="{{ category.image.name }}" class="image" />
+        <img *ngIf="category.image === undefined" src="../../../assets/placeholder.jpg" class="image">
+        <div class="image-count" *ngIf="numberOfImages!=null">{{ numberOfImages + " " + getString() }}</div>
+      </div>
+      <div class="info-container">
+        <p>{{getCategoryName()}}</p>
+      </div>
     </div>
-    <div class="info-container">
-      <p>{{getCategoryName()}}</p>
-    </div>
+    <button class="delete-button" ma-icon (click)="onDelete()"><mat-icon>delete</mat-icon></button>
   </div>
-  <button class="delete-button" ma-icon (click)="onDelete()"><mat-icon>delete</mat-icon></button>
-</div>
 </div>
 
 

@@ -1,33 +1,33 @@
 @import url(../../../../styles.less);
 
 img {
-    width: @card-width;
-    height: @category-card-image-height;
-    object-fit: cover;
-    transition: transform 0.3s ease; 
-  }
-  
-  .card:hover img {
-    transform: scale(1.1); 
-  }
-  
-  .info-container {
-    justify-content: space-between;
-    
-  }
+  width: @card-width;
+  height: @category-card-image-height;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
 
-  .info-container > p {
-    text-align: center;
-  } 
+.card:hover img {
+  transform: scale(1.1);
+}
+
+.info-container {
+  justify-content: space-between;
+
+}
+
+.info-container>p {
+  text-align: center;
+}
 
 #image-container {
-    position: relative;
+  position: relative;
 }
 
 .image-count {
   position: absolute;
-  top: 5px; 
-  left: 5px; 
+  top: 5px;
+  left: 5px;
   background-color: @darkest;
   color: white;
   padding: 5px;
@@ -37,7 +37,7 @@ img {
 
 
 .skeleton-container {
-  width: 240px; /* Set the width according to your design */
+  width: 240px;
   margin: 10px;
   background-color: white;
   border-radius: 4px;
@@ -46,23 +46,24 @@ img {
 }
 
 .skeleton-image {
-  height: @category-card-image-height; /* Adjust the height as needed */
-  background-color: #f0f0f0; /* Gray or neutral color */
-  animation: shimmer 1.5s infinite; /* Animation for shimmer effect */
+  height: @category-card-image-height;
+  background-color: #f0f0f0;
+  animation: shimmer 1.5s infinite;
 }
 
 .skeleton-info {
-  height: 20px; /* Adjust the height as needed */
-  width: 80%; /* Adjust the width as needed */
-  background-color: #f0f0f0; /* Gray or neutral color */
+  height: 20px;
+  width: 80%;
+  background-color: #f0f0f0;
   margin: 10px auto;
-  animation: shimmer 1.5s infinite; /* Animation for shimmer effect */
+  animation: shimmer 1.5s infinite;
 }
 
 @keyframes shimmer {
   0% {
     background-position: -200%;
   }
+
   100% {
     background-position: 200%;
   }

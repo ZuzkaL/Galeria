@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { GalleryApiService } from 'src/app/services/gallery-api.service';
 
@@ -9,59 +9,64 @@ import { GalleryApiService } from 'src/app/services/gallery-api.service';
 })
 export class ImageOverlayComponent {
 
-  url:string = ""
-  allImages:any[] = []
-  index:number;
+  url: string = ""
+  allImages: any[] = []
+  index: number;
   isLoading: boolean = true;
   ngOnInit(): void {
   }
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any, 
-    private galleryApiService:GalleryApiService,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private galleryApiService: GalleryApiService,
     private dialogRef: MatDialogRef<ImageOverlayComponent>,
-    ) {
-      this.allImages = this.data.allImages
-      this.index = this.data.index
-      console.log(this.index)
-      this.updateImageUrl();
-    }
+  ) {
+    this.allImages = this.data.allImages
+    this.index = this.data.index
+    this.updateImageUrl();
+  }
 
+  // Closes the image overlay dialog.
   closeOverlay() {
     this.dialogRef.close();
   }
+
+
+  // Closes the image overlay dialog if a click occurs outside the overlay content.
   closeOverlayOnOutsideClick(event: MouseEvent): void {
     const overlayContent = document.getElementById('overlay-content') as HTMLElement;
     if (!overlayContent.contains(event.target as Node)) {
       this.closeOverlay();
     }
   }
-  
 
+  // Moves to the next image in the category.
   moveNext() {
     if (this.index < this.allImages.length - 1) {
       this.index++;
-    }else{
-      this.index=0
+    } else {
+      this.index = 0
     }
     this.updateImageUrl();
   }
 
+  // Moves to the previous image in the category.
   movePrevious() {
     if (this.index > 0) {
       this.index--;
     } else {
-      this.index = this.allImages.length-1
+      this.index = this.allImages.length - 1
     }
     this.updateImageUrl();
   }
 
+  //  Updates the image URL based on the current index and dimensions of the viewport.
   private updateImageUrl() {
-    this.isLoading = true; // Set loading state to true
+    this.isLoading = true;
     const vw = window.innerWidth;
     const vh = window.innerHeight;
     this.url = this.galleryApiService.getImageUrl(vw, vh, this.allImages[this.index].fullpath);
-    this.isLoading=false
+    this.isLoading = false
   }
 
 }

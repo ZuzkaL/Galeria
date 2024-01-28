@@ -1,7 +1,7 @@
 <div class="card clickable" (mouseover)="showDeleteButton=true" *ngIf="!isDeleted">
     <div id="image-container" class="image">
-            <img *ngIf="image!=undefined" [src]="getImageUrl(image?.fullpath)" alt="{{ image.name }}" class="image" />
-            <img *ngIf="image==undefined" src="../../../assets/placeholder.jpg" class="image">
+        <img *ngIf="image!=undefined" [src]="getImageUrl(image?.fullpath)" alt="{{ image.name }}" class="image" />
+        <img *ngIf="image==undefined" src="../../../assets/placeholder.jpg" class="image">
     </div>
     <button class="delete-button" ma-icon (click)="onDelete($event)"><mat-icon>delete</mat-icon></button>
 </div>

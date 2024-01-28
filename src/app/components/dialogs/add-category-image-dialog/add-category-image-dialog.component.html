@@ -1,25 +1,24 @@
 <div class="dialog-container">
-    <div class="dialog-header">
-      <span>
-        <h2 mat-dialog-title>{{"add-image" | translate}} {{data.categoryName}}</h2>
-      </span>
-      <button mat-dialog-close class="close-button-dialog">x</button>
-    </div>
-    <div>
-      <div class="custom-input">
-        <label for="fileInput" (drop)="handleDrop($event)" (dragover)="handleDragOver($event)">
-          <div *ngIf="!selectedImage" class="input-label">
-            <img src="../../../../assets/image.png" alt="Image" class="icon">
-            <p id="first-label">{{ "Drag-here" | translate}}</p>
-            <p id="second-label">{{"or" | translate}}</p>
-            <p id="third-label">{{"choose-file"| translate}} </p>
-          </div>
-          <img *ngIf="selectedImage" [src]="selectedImage" alt="Selected Image" id="preview-image">
-        </label>
-        <input type="file" id="fileInput" (change)="handleFileInput($event)" style="display: none;">
-      </div>
-      <p class="error-text" *ngIf="!isChosenImageJPG">{{"select-jpg-image" | translate}}</p>
-    </div>
-    <button class="add-button-dialog" (click)="addCategoryImage()">{{"Add" | translate}}</button>
+  <div class="dialog-header">
+    <span>
+      <h2 mat-dialog-title>{{"add-image" | translate}} {{data.categoryName}}</h2>
+    </span>
+    <button mat-dialog-close class="close-button-dialog">x</button>
   </div>
-  
+  <div>
+    <div class="custom-input">
+      <label for="fileInput" (drop)="handleDrop($event)" (dragover)="handleDragOver($event)">
+        <div *ngIf="!selectedImage" class="input-label">
+          <img src="../../../../assets/image.png" alt="Image" class="icon">
+          <p id="first-label">{{ "Drag-here" | translate}}</p>
+          <p id="second-label">{{"or" | translate}}</p>
+          <p id="third-label">{{"choose-file"| translate}} </p>
+        </div>
+        <img *ngIf="selectedImage" [src]="selectedImage" alt="Selected Image" id="preview-image">
+      </label>
+      <input type="file" id="fileInput" (change)="handleFileInput($event)" style="display: none;">
+    </div>
+    <p class="error-text" *ngIf="!isChosenImageJPG">{{"select-jpg-image" | translate}}</p>
+  </div>
+  <button class="add-button-dialog" (click)="addCategoryImage()">{{"Add" | translate}}</button>
+</div>
