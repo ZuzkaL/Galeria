@@ -29,6 +29,13 @@ export class ImageOverlayComponent {
   closeOverlay() {
     this.dialogRef.close();
   }
+  closeOverlayOnOutsideClick(event: MouseEvent): void {
+    const overlayContent = document.querySelector('.overlay-content') as HTMLElement;
+    if (!overlayContent.contains(event.target as Node)) {
+      this.closeOverlay();
+    }
+  }
+  
 
   moveNext() {
     if (this.index < this.allImages.length - 1) {
