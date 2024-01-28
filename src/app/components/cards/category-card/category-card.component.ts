@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { GalleryApiService } from 'src/app/services/gallery-api.service';
-import { ConfirmationDialogComponent, ConfirmationDialogData } from '../dialogs/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent, ConfirmationDialogData } from '../../dialogs/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CategoriesComponent } from 'src/app/pages/categories/categories.component';
 import { SharedService } from 'src/app/services/shared.service';
