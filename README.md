@@ -1,62 +1,58 @@
-# Galeria
+# Gallery
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.13.
+This Angular project, generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.13, serves as a gallery application.
 
-## Development server
+## Development Server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+To run the development server, follow these steps:
 
-* You need to turn off yours CORS, here is command for windows: ./chrome.exe --user-data-dir="C://chrome-dev-disabled-security" --disable-web-security --disable-site-isolation-trials
+1. Install Angular CLI.
+2. Run `ng serve` for a dev server.
+3. Navigate to `http://localhost:4200/`. The application will automatically reload when you make changes to the source files.
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
+Note: You might need to disable CORS for local development. If you are using Chrome on Windows, you can run the following command: `./chrome.exe --user-data-dir="C://chrome-dev-disabled-security" --disable-web-security --disable-site-isolation-trials`.
 
 # Added Features
 
-- Animations (on hover over cards)
-- Filtering and sorting based on the name
-- Delete of category
-- Delete of image
-- Do not show category that do not exist (there was one category that I get by /gallery and if I asked for it in /gallery/{{path}} it returned that this category do not exist)
-- If category name is longer that it should be, it will add ... to the end and trim string
-- i18n (sk, en)
+- Animations (triggered on hover over cards)
+- Filtering and sorting based on category names
+- Deletion of categories
+- Deletion of images
+- Exclude categories that do not exist (for example, a category obtained through /gallery, and if requested in /gallery/{{path}}, it returns that the category does not exist)
+- If the category name exceeds the expected length, it will add "..." to the end and trim the string
+- Internationalization (i18n) for Slovak (sk) and English (en)
 
 ---
 
-# Error handling in frontend
+# Error Handling in Frontend
 
 ## /gallery
 
-### get
-500: In app-categories is written text. That shows that it is internal error. 
+### GET
+- **500:** Displayed text in the app indicates an internal error.
 
-### post
-400: Alert that says that something is wrong 
-409: Text that says that kategory with this name exist 
-500: Alert dialog that says there are backend problems, try again later. 
+### POST
+- **400:** Alert indicating that something is wrong.
+- **409:** Text indicating that a category with this name already exists.
+- **500:** Alert dialog indicating backend problems, advising to try again later.
 
 ## /gallery/$path
 
-### get
-404: Text that says that this category does not exist 
-500: Alert dialog that says there are backend problems, try again later. 
+### GET
+- **404:** Text indicating that this category does not exist.
+- **500:** Alert dialog indicating backend problems, advising to try again later.
 
-### delete
-404: Alert that this gallery does not exist 
-500: Alert dialog that says there are backend problems, try again later. 
+### DELETE
+- **404:** Alert indicating that this gallery does not exist.
+- **500:** Alert dialog indicating backend problems, advising to try again later.
 
-### post
-400: Alert that file not found
-404: window alert
-500: Alert dialog that says there are backend problems, try again later. 
+### POST
+- **400:** Alert indicating file not found.
+- **404:** Window alert.
+- **500:** Alert dialog indicating backend problems, advising to try again later.
 
 ## /images
 
-### get
-
-404: Photo not found, alert 
-
-500: The photo can not be generated, alert 
-
+### GET
+- **404:** Photo not found, triggers an alert window.
+- **500:** The photo cannot be generated, triggers an alert window.
