@@ -88,7 +88,6 @@ export class GalleryApiService {
     // 200 - return image preview
     // 404 photo not found
     // 500 The photo preview can't be generated.
-    // TODO
     return this.apiUrl+"/images/"+width+"x"+height+"/"+path;
   }
 

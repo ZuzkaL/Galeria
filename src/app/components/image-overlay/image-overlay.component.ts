@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 import { GalleryApiService } from 'src/app/services/gallery-api.service';
 
 @Component({
@@ -20,6 +21,7 @@ export class ImageOverlayComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private galleryApiService: GalleryApiService,
     private dialogRef: MatDialogRef<ImageOverlayComponent>,
+    private translate: TranslateService
   ) {
     this.allImages = this.data.allImages
     this.index = this.data.index
@@ -63,10 +65,33 @@ export class ImageOverlayComponent {
   //  Updates the image URL based on the current index and dimensions of the viewport.
   private updateImageUrl() {
     this.isLoading = true;
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
-    this.url = this.galleryApiService.getImageUrl(vw, vh, this.allImages[this.index].fullpath);
-    this.isLoading = false
+  
+    try {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+  
+      const imageUrl = this.galleryApiService.getImageUrl(vw, vh, this.allImages[this.index].fullpath);
+  
+      // Image URL fetched successfully
+      this.url = imageUrl;
+      this.isLoading = false;
+    } catch (error:any) {
+      console.error('Error updating image URL:', error);
+  
+      // Handle different error cases
+      if (error.code === 404) {
+        // Image not found
+        window.alert(this.translate.instant("imageNotFound"))
+      } else if (error.code === 500) {
+        // Error generating image preview, handle it as needed
+        window.alert(this.translate.instant("generatePreviewError"))
+      } else {
+        window.alert(this.translate.instant("genericError"))
+      } 
+      this.url =  '../../assets/placeholder.jpg';
+      this.isLoading = false;
+    }
   }
+  
 
 }

@@ -29,25 +29,38 @@ export class CategoryCardComponent implements OnInit {
     this.loadCategoryImages();
   }
 
-  /**
-   * Get the image URL using the width, height, and path.
-   */
+  
+  // Get the image URL using the width, height, and path.
   getImageUrl(path: string): string {
     const imageContainer = this.el.nativeElement.querySelector('#image-container');
-
-    if (imageContainer) {
-      const width = imageContainer.clientWidth;
-      const height = imageContainer.clientHeight;
-      return this.galleryApiService.getImageUrl(width, height, path);
-    } else {
-      console.error('Element with ID "image-container" not found.');
-      return '';
+  
+    try {
+      if (imageContainer) {
+        const width = imageContainer.clientWidth;
+        const height = imageContainer.clientHeight;
+        return this.galleryApiService.getImageUrl(width, height, path);
+      } else {
+        throw new Error('Element with ID "image-container" not found.');
+      }
+    } catch (error:any) {
+      console.error('Error updating image URL:', error);
+  
+      // Handle different error cases
+      if (error.code === 404) {
+        // Image not found
+        window.alert(this.translate.instant("imageNotFound"))
+      } else if (error.code === 500) {
+        // Error generating image preview, handle it as needed
+        window.alert(this.translate.instant("generatePreviewError"))
+      } else {
+        window.alert(this.translate.instant("genericError"))
+      } 
+        return  '../../../assets/placeholder.jpg';
     }
   }
 
-  /**
-   * Load category images and update relevant properties.
-   */
+  
+  // Load category images and update relevant properties.
   loadCategoryImages() {
     this.galleryApiService.getCategoryImages(this.category.path)
       .then((category) => {
