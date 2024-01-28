@@ -15,6 +15,7 @@ export class CategoryCardComponent implements OnInit{
   numberOfImages=null;
   showDeleteButton = false;
   isLoadedRight = true
+  isLoaded = false
 
   constructor(
     private galleryApiService: GalleryApiService, 
@@ -52,10 +53,12 @@ export class CategoryCardComponent implements OnInit{
       .then((category) => {
         this.numberOfImages = category.images.length
         console.log(this.numberOfImages)
+        this.isLoaded=true
       })
       .catch((error) => {
         if(error.code==404){
           this.isLoadedRight = false
+          this.isLoaded=true
         }
       });
   }

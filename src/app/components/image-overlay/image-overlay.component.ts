@@ -12,6 +12,7 @@ export class ImageOverlayComponent {
   url:string = ""
   allImages:any[] = []
   index:number;
+  isLoading: boolean = true;
   ngOnInit(): void {
   }
 
@@ -56,9 +57,11 @@ export class ImageOverlayComponent {
   }
 
   private updateImageUrl() {
+    this.isLoading = true; // Set loading state to true
     const vw = window.innerWidth;
     const vh = window.innerHeight;
     this.url = this.galleryApiService.getImageUrl(vw, vh, this.allImages[this.index].fullpath);
+    this.isLoading=false
   }
 
 }

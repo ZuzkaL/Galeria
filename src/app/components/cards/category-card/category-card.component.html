@@ -1,4 +1,5 @@
-<div class="card clickable" (mouseover)="showDeleteButton=true" *ngIf="isLoadedRight">
+<div *ngIf="isLoaded; else skeleton">
+  <div *ngIf="isLoadedRight" class="card clickable" (mouseover)="showDeleteButton=true">
   <div [routerLink]="['/category', category.path]">
     <div id="image-container">
       <img *ngIf="category.image !== undefined" [src]="getImageUrl(category.image?.fullpath)"
@@ -12,3 +13,13 @@
   </div>
   <button class="delete-button" ma-icon (click)="onDelete()"><mat-icon>delete</mat-icon></button>
 </div>
+</div>
+
+
+<ng-template #skeleton>
+  <!-- Skeleton loader structure -->
+  <div class="skeleton-container">
+    <div class="skeleton-image"></div>
+    <div class="skeleton-info"></div>
+  </div>
+</ng-template>

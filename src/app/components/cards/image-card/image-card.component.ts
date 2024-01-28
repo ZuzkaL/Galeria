@@ -1,26 +1,26 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { GalleryApiService } from 'src/app/services/gallery-api.service';
-import { ConfirmationDialogComponent, ConfirmationDialogData } from '../../dialogs/confirmation-dialog/confirmation-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
-import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-image-card',
   templateUrl: './image-card.component.html',
   styleUrls: ['./image-card.component.less']
 })
-export class ImageCardComponent {
+export class ImageCardComponent implements OnInit {
   @Input() image: any;
   @Output() cardClicked = new EventEmitter<void>();
   @Output() deleteClicked = new EventEmitter<void>();
   showDeleteButton = false;
   isDeleted = false;
+  imageUrl=""
   constructor(
     private galleryApiService: GalleryApiService,
-    private dialog: MatDialog,
-    private sharedService: SharedService,
     private el: ElementRef
-  ) { }
+  ) { 
+  }
+  ngOnInit(): void {
+    this.imageUrl = this.getImageUrl(this.image?.fullpath)
+  }
 
   getImageUrl(path: string): string {
     // Get the element with the ID 'image-container'

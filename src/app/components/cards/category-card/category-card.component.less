@@ -34,3 +34,36 @@ img {
   border-radius: 5px;
   font-size: 12px;
 }
+
+
+.skeleton-container {
+  width: 240px; /* Set the width according to your design */
+  margin: 10px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.skeleton-image {
+  height: @category-card-image-height; /* Adjust the height as needed */
+  background-color: #f0f0f0; /* Gray or neutral color */
+  animation: shimmer 1.5s infinite; /* Animation for shimmer effect */
+}
+
+.skeleton-info {
+  height: 20px; /* Adjust the height as needed */
+  width: 80%; /* Adjust the width as needed */
+  background-color: #f0f0f0; /* Gray or neutral color */
+  margin: 10px auto;
+  animation: shimmer 1.5s infinite; /* Animation for shimmer effect */
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}

@@ -65,7 +65,6 @@ Then you can load from this site. (https://bart-galeria.web.app/categories)
 
 ## TODO
 
-- loading
 - loaklizaciu
 - dark mode
 - upratat kod
@@ -75,12 +74,9 @@ Then you can load from this site. (https://bart-galeria.web.app/categories)
 - hosting
 
 
-### celkovo - features
-- loading 
-- lokalizacia
+
 
 ### celkovo - nice to have
-- dark mode podľa toho ako je nastavený systém
 
 - osetrit aby to bolo co najlepsie
     - vymazat importy zbytocne
