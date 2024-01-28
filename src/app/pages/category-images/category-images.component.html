@@ -1,4 +1,4 @@
-<div *ngIf="!isLoading">
+<div *ngIf="!isLoading && doesThisCategoryExist">
     <div [routerLink]="['/']" class="arrow-text clickable">
         {{gallery.name}}
     </div>
@@ -17,4 +17,8 @@
     <div *ngIf="images.length === 0">
     <p>Pre kategóriu {{ gallery.name }} neexistujú žiadne obrázky.</p>
     </div>
+</div>
+<div *ngIf="!doesThisCategoryExist">
+    <p class="error-text">Daná kategória neexistuje!</p>
+    <p class="arrow-text clickable" [routerLink]="['/']">Prejdite na stránku kategórií</p>
 </div>

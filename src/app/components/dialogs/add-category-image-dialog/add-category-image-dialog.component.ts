@@ -58,7 +58,12 @@ export class AddCategoryImageDialogComponent implements OnInit {
         })
         .catch(error => {
           console.error('Error uploading image:', error);
-          // TODO: Handle error, if needed
+          // 400 Invalid request - file not found.
+          if(error.code==400)
+          window.alert("Súbor nebol nájdený. Skúste to neskôr.")
+          // 404 gallery not found
+          if(error.code==404)
+          window.alert("Kategória nebola nájdená. Skúste to neskôr.")
         });
     }
   }

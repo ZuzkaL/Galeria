@@ -24,13 +24,48 @@ Then you can load from this site. (https://bart-galeria.web.app/categories)
 - Delete of category
 - Delete of image
 - Hosting
-- Do not show category that do not exist
+- Do not show category that do not exist (there was one category that I get by /gallery and if I asked for it in /gallery/{{path}} it returned that this category do not exist)
+- If category name is longer that it should be, it will add ... to the end and trim string
 
+
+# Error handling in frontend
+
+## /gallery
+
+### get
+500: In <app-categories> there is written text. That shows that it is internal error. 
+
+### post
+400: Alert that says that something is wrong 
+409: Text that says that kategory with this name exist 
+500: Alert dialog that says there are backend problems, try again later. 
+
+## /gallery/${path}
+
+### get
+404: Text that says that this category does not exist 
+500: Alert dialog that says there are backend problems, try again later. 
+
+### delete
+404: Alert that this gallery does not exist 
+500: Alert dialog that says there are backend problems, try again later. 
+
+### post
+400: Alert that file not found
+404: window alert
+500: Alert dialog that says there are backend problems, try again later. 
+
+## /images
+
+### get
+404: Photo not found, alert 
+500: The photo can not be generated, alert 
 ---
 
 
 ## TODO
-- errory osetrit vsetky
+- ak klikne mimo pri overlay, tak sa zavrie
+- obrazok pridat len jpg
 - upratat kod (aby bolo co najviac veci na jednom mieste)
 
 - loading

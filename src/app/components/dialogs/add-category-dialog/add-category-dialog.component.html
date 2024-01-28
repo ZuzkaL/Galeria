@@ -10,6 +10,7 @@
         <mat-label>Názov kategórie</mat-label>
         <input matInput #categoryName maxlength="256" placeholder="napr. Príroda" [(ngModel)]="name">
       </mat-form-field>
+      <p class="error-text" *ngIf="doesCategoryWithThisNameExist">Daný názov kategórie už existuje, zadajte iný.</p>
     </div>
     <button class="add-button-dialog" (click)="addCategory()">Pridať</button>
   </div>

@@ -39,7 +39,6 @@ export class CategoriesComponent implements OnInit {
       })
       .catch((error) => {
         console.error('Error loading categories:', error);
-        // TODO: Môžeš spracovať chybu a informovať používateľa
       });
   }
   filterCategories() {

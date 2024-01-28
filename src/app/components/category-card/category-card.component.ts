@@ -60,23 +60,36 @@ export class CategoryCardComponent implements OnInit{
   }
 
 
-  onDelete(){
+  onDelete() {
     const confirmationDialogData: ConfirmationDialogData = {
-      title: 'Odstrániť kategóriu "'+this.category.name+'"?',
-      description: 'Naozaj si želáte odstrániť kategóriu "'+this.category.name+'"?',
+      title: 'Odstrániť kategóriu "' + this.category.name + '"?',
+      description: 'Naozaj si želáte odstrániť kategóriu "' + this.category.name + '"?',
       confirmButtonText: 'Áno',
       cancelButtonText: 'Nie',
       onConfirm: () => {
-        this.galleryApiService.deleteCategoryOrImageByPath(this.category.path).then(
-          ()=>this.sharedService.triggerCategoriesReload()
-        )
+        this.galleryApiService.deleteCategoryOrImageByPath(this.category.path)
+          .then(() => {
+            this.sharedService.triggerCategoriesReload();
+          })
+          .catch((error) => {
+            if (error.code === 404) {
+              // Handle 404 error (category does not exist)
+              alert('Kategória neexistuje');
+            } else {
+              // Handle other errors
+              console.error('Error deleting category:', error);
+              alert('Pri vymazaní kategórie sa vyskytla chyba.');
+            }
+          });
       }
     };
+  
     this.dialog.open(ConfirmationDialogComponent, {
       width: '400px',
       data: confirmationDialogData
     });
   }
+  
 
   getCategoryName(){
     const maxCharacters = 24; 

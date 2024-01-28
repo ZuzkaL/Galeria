@@ -16,6 +16,7 @@ export class CategoryImagesComponent implements OnInit {
   images: any[] = [];
   gallery: any = null;
   isLoading = true;
+  doesThisCategoryExist=true
 
   constructor(
     private route: ActivatedRoute, 
@@ -40,6 +41,9 @@ export class CategoryImagesComponent implements OnInit {
       })
       .catch((error) => {
         console.error('Error loading category images:', error);
+        if(error.code==404){
+          this.doesThisCategoryExist=false
+        }
       });
   }
 
@@ -78,11 +82,21 @@ export class CategoryImagesComponent implements OnInit {
       confirmButtonText: 'Áno',
       cancelButtonText: 'Nie',
       onConfirm: () => {
-        this.galleryApiService.deleteCategoryOrImageByPath(this.images[index].fullpath).then(
+        this.galleryApiService.deleteCategoryOrImageByPath(this.images[index].fullpath)
+        .then(
           () => {
               this.loadCategoryImages()
           }
-        )
+        ).catch((error) => {
+          if (error.code === 404) {
+            // Handle 404 error (category does not exist)
+            alert('Obrázok neexistuje');
+          } else {
+            // Handle other errors
+            console.error('Error deleting image:', error);
+            alert('Pri vymazaní obrázka sa vyskytla chyba.');
+          }
+        });
       }
     };
     this.dialog.open(ConfirmationDialogComponent, {

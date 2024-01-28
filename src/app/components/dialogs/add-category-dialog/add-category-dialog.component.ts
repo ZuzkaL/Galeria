@@ -9,6 +9,7 @@ import { GalleryApiService } from 'src/app/services/gallery-api.service';
 })
 export class AddCategoryDialogComponent {
   name: string = "";
+  doesCategoryWithThisNameExist=false
 
   constructor(
     public dialogRef: MatDialogRef<AddCategoryDialogComponent>,
@@ -47,10 +48,12 @@ export class AddCategoryDialogComponent {
         console.error('Error creating category:', error);
         // Handle error, if needed
         if (error.code == 409) {
-          window.alert("Zadaný názov kategórie už existuje. Zadajte iný.")
+          this.doesCategoryWithThisNameExist = true
         } else {
-          window.alert("Nastala chyba pri spracovaní.")
-        }
+            if(error.code==400){
+              window.alert("Obrázok nespĺňa požiadavky.")
+            }
+          }
       });
   }
 }
