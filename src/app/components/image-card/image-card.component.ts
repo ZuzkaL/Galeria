@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { GalleryApiService } from 'src/app/services/gallery-api.service';
 import { ConfirmationDialogComponent, ConfirmationDialogData } from '../dialogs/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,6 +11,8 @@ import { SharedService } from 'src/app/services/shared.service';
 })
 export class ImageCardComponent {
   @Input() image: any;
+  @Output() cardClicked = new EventEmitter<void>();
+  @Output() deleteClicked = new EventEmitter<void>();
   showDeleteButton = false;
   isDeleted = false;
   constructor(
@@ -23,24 +25,13 @@ export class ImageCardComponent {
     return this.galleryApiService.getImageUrl(width, height, path);
   }
 
-  onDelete() {
-    const confirmationDialogData: ConfirmationDialogData = {
-      title: 'Odstrániť obrázok?',
-      description: 'Naozaj si želáte odstrániť tento obrázok?',
-      confirmButtonText: 'Áno',
-      cancelButtonText: 'Nie',
-      onConfirm: () => {
-        this.galleryApiService.deleteCategoryOrImageByPath(this.image.fullpath).then(
-          () => {
-              this.sharedService.triggerCategoriesReload(),
-              this.isDeleted = true
-          }
-        )
-      }
-    };
-    this.dialog.open(ConfirmationDialogComponent, {
-      width: '400px',
-      data: confirmationDialogData
-    });
+  openOverlay() {
+    this.cardClicked.emit();
+  }
+
+  onDelete(event: Event) {
+    // Stop event propagation to prevent opening the overlay
+    event.stopPropagation();
+    this.deleteClicked.emit();
   }
 }

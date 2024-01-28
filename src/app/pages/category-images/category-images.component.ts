@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { AddCategoryImageDialogComponent } from 'src/app/components/dialogs/add-category-image-dialog/add-category-image-dialog.component';
+import { ConfirmationDialogData, ConfirmationDialogComponent } from 'src/app/components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { ImageOverlayComponent } from 'src/app/components/image-overlay/image-overlay.component';
 import { GalleryApiService } from 'src/app/services/gallery-api.service';
 
@@ -67,6 +68,26 @@ export class CategoryImagesComponent implements OnInit {
       maxWidth: '100vw',
       maxHeight: '100vh',
       panelClass: 'full-size-image-dialog',
+    });
+  }
+
+  onDeleteImage(index: number) {
+    const confirmationDialogData: ConfirmationDialogData = {
+      title: 'Odstrániť obrázok?',
+      description: 'Naozaj si želáte odstrániť tento obrázok?',
+      confirmButtonText: 'Áno',
+      cancelButtonText: 'Nie',
+      onConfirm: () => {
+        this.galleryApiService.deleteCategoryOrImageByPath(this.images[index].fullpath).then(
+          () => {
+              this.loadCategoryImages()
+          }
+        )
+      }
+    };
+    this.dialog.open(ConfirmationDialogComponent, {
+      width: '400px',
+      data: confirmationDialogData
     });
   }
 }
