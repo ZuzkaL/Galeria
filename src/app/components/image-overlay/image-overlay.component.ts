@@ -85,8 +85,6 @@ export class ImageOverlayComponent {
       } else if (error.code === 500) {
         // Error generating image preview, handle it as needed
         window.alert(this.translate.instant("generatePreviewError"))
-      } else {
-        window.alert(this.translate.instant("genericError"))
       } 
       this.url =  '../../assets/placeholder.jpg';
       this.isLoading = false;

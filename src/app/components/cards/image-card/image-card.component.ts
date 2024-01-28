@@ -35,10 +35,10 @@ export class ImageCardComponent implements OnInit {
         const height = imageContainer.clientHeight;
         return this.galleryApiService.getImageUrl(width, height, path);
       } else {
-        throw new Error('Element with ID "image-container" not found.');
+        return  '../../../assets/placeholder.jpg';
       }
     } catch (error:any) {
-      console.error('Error updating image URL:', error);
+      console.error('Error updating image URL b:', error);
   
       // Handle different error cases
       if (error.code === 404) {
@@ -47,8 +47,6 @@ export class ImageCardComponent implements OnInit {
       } else if (error.code === 500) {
         // Error generating image preview, handle it as needed
         window.alert(this.translate.instant("generatePreviewError"))
-      } else {
-        window.alert(this.translate.instant("genericError"))
       } 
         return  '../../../assets/placeholder.jpg';
     }
