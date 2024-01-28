@@ -2,7 +2,6 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { AddCategoryImageDialogComponent } from 'src/app/components/dialogs/add-category-image-dialog/add-category-image-dialog.component';
-import { ImageDialogComponent } from 'src/app/components/dialogs/image-dialog/image-dialog.component';
 import { GalleryApiService } from 'src/app/services/gallery-api.service';
 
 @Component({

@@ -10,7 +10,6 @@ import { CategoryCardComponent } from './components/category-card/category-card.
 import { ImageCardComponent } from './components/image-card/image-card.component';
 import { AddCategoryDialogComponent } from './components/dialogs/add-category-dialog/add-category-dialog.component';
 import { AddCategoryImageDialogComponent } from './components/dialogs/add-category-image-dialog/add-category-image-dialog.component';
-import { ImageDialogComponent } from './components/dialogs/image-dialog/image-dialog.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
@@ -28,7 +27,6 @@ import { ConfirmationDialogComponent } from './components/dialogs/confirmation-d
     ImageCardComponent,
     AddCategoryDialogComponent,
     AddCategoryImageDialogComponent,
-    ImageDialogComponent,
     ConfirmationDialogComponent
   ],
   imports: [

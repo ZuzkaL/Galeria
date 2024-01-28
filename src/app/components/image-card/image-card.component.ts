@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { GalleryApiService } from 'src/app/services/gallery-api.service';
 import { ConfirmationDialogComponent, ConfirmationDialogData } from '../dialogs/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { ImageDialogComponent } from '../dialogs/image-dialog/image-dialog.component';
 import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
@@ -42,19 +41,6 @@ export class ImageCardComponent {
     this.dialog.open(ConfirmationDialogComponent, {
       width: '400px',
       data: confirmationDialogData
-    });
-  }
-
-  openFullSizeImageDialog(fullPath: any): void {
-    // TODO: pridat posuvanie
-    console.log(fullPath)
-    this.dialog.open(ImageDialogComponent, {
-      data: {
-        path: fullPath
-      },
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      panelClass: 'full-size-image-dialog',
     });
   }
 }

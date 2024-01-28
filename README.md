@@ -27,28 +27,39 @@ Then you can load from this site. (https://bart-galeria.web.app/categories)
 
 ---
 
-# Nápady na doplnenie
-
-- loading (skeleton loader)
-- dark mode podľa toho ako je nastavený systém (vytvoriť tmavú verziu)
-- filtrovanie a sortovanie kategórií (podľa počtu obrázkov + vyhľadať podľa názvu)
-- delete na veci (kategória a obrázok)
-- hosting
 
 ## TODO
+- galeriu na prechádzanie obrázkov 
+- ak su vacsie texty tak zarovnat aby boli 3 bodky
+- osetrit ze ak je obrazok v all galerii ale nie je v db, tak neukazovat
+- obrazok aby sa zobrazoval dobre
+- responzivnost dialog. okien
+- errory osetrit vsetky
+- upratat kod (aby bolo co najviac veci na jednom mieste)
+
+- loading
+- loaklizaciu
+- dark mode
+- upratat kod
+- v spravnom poradi napisat importy
+- pokomentovat
+- poformatovat
+
 
 ### celkovo - features
 - posuvanie sa v obrazkoch
 - loading 
+- lokalizacia
 
 ### celkovo - nice to have
 - dialogove okna (responyivnost pri mobile)
 - errory osetrit
 - sirka karticky na jednom mieste
 - ak su vacsie texty tak zarovnat aby boli 3 bodky
-- dark mode podľa toho ako je nastavený systém
 - osetrit ze ak je obrazok v all galerii ale nie je v db, tak neukazovat
-- cors policy pri nahrati obrazka
+
+- dark mode podľa toho ako je nastavený systém
+
 - osetrit aby to bolo co najlepsie
     - vymazat importy zbytocne
     - prejst kazdy subor a poriesit co je naviac
