@@ -14,6 +14,7 @@ export class CategoryCardComponent implements OnInit{
   @Input() category: any;
   numberOfImages=null;
   showDeleteButton = false;
+  isLoadedRight = true
 
   constructor(
     private galleryApiService: GalleryApiService, 
@@ -37,7 +38,9 @@ export class CategoryCardComponent implements OnInit{
         console.log(this.numberOfImages)
       })
       .catch((error) => {
-        console.error('Error loading category images:', error);
+        if(error.code==404){
+          this.isLoadedRight = false
+        }
       });
   }
 
@@ -73,5 +76,16 @@ export class CategoryCardComponent implements OnInit{
       width: '400px',
       data: confirmationDialogData
     });
+  }
+
+  getCategoryName(){
+    const maxCharacters = 24; 
+    const categoryName = this.category.name;
+
+    if (categoryName.length > maxCharacters) {
+      return categoryName.substring(0, maxCharacters) + '...';
+    } else {
+      return categoryName;
+    }
   }
 }

@@ -29,9 +29,6 @@ Then you can load from this site. (https://bart-galeria.web.app/categories)
 
 
 ## TODO
-- ak su vacsie texty tak zarovnat aby boli 3 bodky
-- osetrit ze ak je obrazok v all galerii ale nie je v db, tak neukazovat
-- obrazok aby sa zobrazoval dobre
 - responzivnost dialog. okien
 - errory osetrit vsetky
 - upratat kod (aby bolo co najviac veci na jednom mieste)
