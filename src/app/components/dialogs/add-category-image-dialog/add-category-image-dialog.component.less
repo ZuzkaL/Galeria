@@ -1,5 +1,6 @@
+@import url(../../../../styles.less);
 .custom-input {
-    border: 2px dashed rgb(223, 223, 223);
+    border: 2px dashed @lightGray;
     border-radius: 4px;
     padding: 24px;
 }
@@ -16,25 +17,26 @@
     height: 24px; 
 }
 
-.first-label {
+#first-label {
     font-weight: 500;
-    margin-top: 8px; /* Adjust the spacing */
+    margin-top: 8px; 
 }
 
-.second-label {
+#second-label {
     color: gray;
 }
 
-.third-label {
+#third-label {
     border: 2px solid black;
     border-radius: 4px;
     padding: 8px;
     color: black;
-    margin-top: 8px; /* Adjust the spacing */
+    margin-top: 8px; 
 }
 
-.preview-image {
-    margin-top: 8px; /* Adjust the spacing */
+#preview-image {
+    margin-top: 8px;
+    max-width: 100%;
 }
 
 label {
@@ -42,6 +44,4 @@ label {
     cursor: pointer;
 }
 
-.preview-image{
-    max-width: 100%;
-}
+

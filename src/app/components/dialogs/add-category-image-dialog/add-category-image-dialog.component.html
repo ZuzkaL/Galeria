@@ -10,11 +10,11 @@
         <label for="fileInput" (drop)="handleDrop($event)" (dragover)="handleDragOver($event)">
           <div *ngIf="!selectedImage" class="input-label">
             <img src="../../../../assets/image.png" alt="Image" class="icon">
-            <p class="first-label">Sem presuňte fotky</p>
-            <p class="second-label">alebo</p>
-            <p class="third-label">Vyberte súbor</p>
+            <p id="first-label">Sem presuňte fotky</p>
+            <p id="second-label">alebo</p>
+            <p id="third-label">Vyberte súbor</p>
           </div>
-          <img *ngIf="selectedImage" [src]="selectedImage" alt="Selected Image" class="preview-image">
+          <img *ngIf="selectedImage" [src]="selectedImage" alt="Selected Image" id="preview-image">
         </label>
         <input type="file" id="fileInput" (change)="handleFileInput($event)" style="display: none;">
       </div>

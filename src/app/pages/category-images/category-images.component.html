@@ -2,20 +2,20 @@
     <div [routerLink]="['/']" class="arrow-text clickable">
         {{gallery.name}}
     </div>
-    <div class="images-container">
+    <div id="images-container">
         <div *ngFor="let image of images; let i = index">
             <div (click)="openFullSizeImageDialog(i)">
-            <app-image-card [image]="image" (deleteClicked)="onDeleteImage(i)"></app-image-card>
+                <app-image-card [image]="image" (deleteClicked)="onDeleteImage(i)"></app-image-card>
             </div>
         </div>
-        <div class="card add-card clickable" [style.height]="'220px'" (click)="openAddImageDialog()">
+        <div class="card add-card clickable" id="add-image-card" (click)="openAddImageDialog()">
             <div class="plus-icon">+</div>
             <p>Pridať fotky</p>
         </div>
     </div>
-    
+
     <div *ngIf="images.length === 0">
-    <p>Pre kategóriu {{ gallery.name }} neexistujú žiadne obrázky.</p>
+        <p>Pre kategóriu {{ gallery.name }} neexistujú žiadne obrázky.</p>
     </div>
 </div>
 <div *ngIf="!doesThisCategoryExist">

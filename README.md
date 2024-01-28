@@ -64,7 +64,6 @@ Then you can load from this site. (https://bart-galeria.web.app/categories)
 
 
 ## TODO
-- upratat kod (aby bolo co najviac veci na jednom mieste)
 
 - loading
 - loaklizaciu
@@ -73,20 +72,14 @@ Then you can load from this site. (https://bart-galeria.web.app/categories)
 - v spravnom poradi napisat importy
 - pokomentovat
 - poformatovat
+- hosting
 
 
 ### celkovo - features
-- posuvanie sa v obrazkoch
 - loading 
 - lokalizacia
 
 ### celkovo - nice to have
-- dialogove okna (responyivnost pri mobile)
-- errory osetrit
-- sirka karticky na jednom mieste
-- ak su vacsie texty tak zarovnat aby boli 3 bodky
-- osetrit ze ak je obrazok v all galerii ale nie je v db, tak neukazovat
-
 - dark mode podľa toho ako je nastavený systém
 
 - osetrit aby to bolo co najlepsie

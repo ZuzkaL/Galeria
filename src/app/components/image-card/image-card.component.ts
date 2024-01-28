@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { GalleryApiService } from 'src/app/services/gallery-api.service';
 import { ConfirmationDialogComponent, ConfirmationDialogData } from '../dialogs/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -18,11 +18,27 @@ export class ImageCardComponent {
   constructor(
     private galleryApiService: GalleryApiService,
     private dialog: MatDialog,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private el: ElementRef
   ) { }
 
-  getImageUrl(width: number, height: number, path: string): string {
-    return this.galleryApiService.getImageUrl(width, height, path);
+  getImageUrl(path: string): string {
+    // Get the element with the ID 'image-container'
+    const imageContainer = this.el.nativeElement.querySelector('#image-container');
+
+    // Check if the element is found
+    if (imageContainer) {
+      // Get the width and height of the element
+      const width = imageContainer.clientWidth;
+      const height = imageContainer.clientHeight;
+
+      // Call the galleryApiService method with the obtained width, height, and path
+      return this.galleryApiService.getImageUrl(width, height, path);
+    } else {
+      // Handle the case where the element is not found
+      console.error('Element with ID "image-container" not found.');
+      return ''; // or return a default URL or handle it as needed
+    }
   }
 
   openOverlay() {

@@ -19,11 +19,11 @@
             </div>
         </span>
     </div>
-    <div class="categories-container">
+    <div id="categories-container">
         <div *ngFor="let category of shownCategories">
             <app-category-card [category]="category"></app-category-card>
         </div>
-        <div class="card clickable add-card" [style.height]="'220px'" (click)="openAddCategoryDialog()">
+        <div class="card clickable add-card" id="add-category-card" (click)="openAddCategoryDialog()">
             <div class="plus-icon">+</div>
             <p>Pridať kategóriu</p>
         </div>
