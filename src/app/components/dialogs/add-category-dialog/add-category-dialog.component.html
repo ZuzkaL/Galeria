@@ -1,15 +1,16 @@
-<div style="width: 320px;">
+<div class="dialog-container">
     <div class="dialog-header">
-        <span>
-            <h2 mat-dialog-title>Pridať kategóriu</h2>
-        </span>
-        <button mat-dialog-close class="close-button-dialog">x</button>
+      <span>
+        <h2 mat-dialog-title>Pridať kategóriu</h2>
+      </span>
+      <button mat-dialog-close class="close-button-dialog">x</button>
     </div>
     <div>
-        <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Názov kategórie</mat-label>
-            <input matInput #categoryName maxlength="256" placeholder="napr. Príroda" [(ngModel)]="name">
-        </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Názov kategórie</mat-label>
+        <input matInput #categoryName maxlength="256" placeholder="napr. Príroda" [(ngModel)]="name">
+      </mat-form-field>
     </div>
     <button class="add-button-dialog" (click)="addCategory()">Pridať</button>
-</div>
+  </div>
+  

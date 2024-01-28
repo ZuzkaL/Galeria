@@ -24,12 +24,12 @@ Then you can load from this site. (https://bart-galeria.web.app/categories)
 - Delete of category
 - Delete of image
 - Hosting
+- Do not show category that do not exist
 
 ---
 
 
 ## TODO
-- responzivnost dialog. okien
 - errory osetrit vsetky
 - upratat kod (aby bolo co najviac veci na jednom mieste)
 
