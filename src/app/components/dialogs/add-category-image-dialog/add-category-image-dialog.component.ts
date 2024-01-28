@@ -7,7 +7,7 @@ import { GalleryApiService } from 'src/app/services/gallery-api.service';
   templateUrl: './add-category-image-dialog.component.html',
   styleUrls: ['./add-category-image-dialog.component.less']
 })
-export class AddCategoryImageDialogComponent implements OnInit {
+export class AddCategoryImageDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<AddCategoryImageDialogComponent>,
@@ -15,8 +15,7 @@ export class AddCategoryImageDialogComponent implements OnInit {
     private galleryApiService: GalleryApiService
   ) { }
 
-  ngOnInit(): void {
-  }
+    isChosenImageJPG=true
 
   selectedImage: any = null;
 
@@ -37,13 +36,19 @@ export class AddCategoryImageDialogComponent implements OnInit {
 
   private handleImage(file: File): void {
     if (file) {
-      const reader = new FileReader();
+      // Check if the file type is .jpg
+      if (file.type === 'image/jpeg' || file.type === 'image/jpg') {
+        const reader = new FileReader();
 
-      reader.onload = (e) => {
-        this.selectedImage = e.target?.result;
-      };
+        reader.onload = (e) => {
+          this.selectedImage = e.target?.result;
+        };
 
-      reader.readAsDataURL(file);
+        reader.readAsDataURL(file);
+      } else {
+        // Alert the user if the selected file is not a .jpg file
+        this.isChosenImageJPG = false
+      }
     }
   }
 

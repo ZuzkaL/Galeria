@@ -64,7 +64,6 @@ Then you can load from this site. (https://bart-galeria.web.app/categories)
 
 
 ## TODO
-- obrazok pridat len jpg
 - upratat kod (aby bolo co najviac veci na jednom mieste)
 
 - loading

@@ -18,6 +18,7 @@
         </label>
         <input type="file" id="fileInput" (change)="handleFileInput($event)" style="display: none;">
       </div>
+      <p class="error-text" *ngIf="!isChosenImageJPG">Vyberte obrázok typu jpg.</p>
     </div>
     <button class="add-button-dialog" (click)="addCategoryImage()">Pridať</button>
   </div>
