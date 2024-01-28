@@ -3,8 +3,10 @@
         {{gallery.name}}
     </div>
     <div class="images-container">
-        <div *ngFor="let image of images">
+        <div *ngFor="let image of images; let i = index">
+            <div (click)="openFullSizeImageDialog(i)">
             <app-image-card [image]="image"></app-image-card>
+            </div>
         </div>
         <div class="card add-card clickable" [style.height]="'220px'" (click)="openAddImageDialog()">
             <div class="plus-icon">+</div>

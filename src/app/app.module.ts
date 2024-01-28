@@ -18,6 +18,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import { ConfirmationDialogComponent } from './components/dialogs/confirmation-dialog/confirmation-dialog.component';
+import { ImageOverlayComponent } from './components/image-overlay/image-overlay.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import { ConfirmationDialogComponent } from './components/dialogs/confirmation-d
     ImageCardComponent,
     AddCategoryDialogComponent,
     AddCategoryImageDialogComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    ImageOverlayComponent
   ],
   imports: [
     BrowserModule,

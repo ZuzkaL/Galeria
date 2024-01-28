@@ -29,7 +29,6 @@ Then you can load from this site. (https://bart-galeria.web.app/categories)
 
 
 ## TODO
-- galeriu na prechádzanie obrázkov 
 - ak su vacsie texty tak zarovnat aby boli 3 bodky
 - osetrit ze ak je obrazok v all galerii ale nie je v db, tak neukazovat
 - obrazok aby sa zobrazoval dobre

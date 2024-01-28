@@ -1,0 +1,9 @@
+<div class="overlay-container" *ngIf="index!=null">
+    <div class="overlay-content">
+        <button class="close-button" (click)="closeOverlay()"><mat-icon>close</mat-icon></button>
+        <img [src]="url" alt="{{ allImages[index].alt }}">
+        <button class="nav-button previous" (click)="movePrevious()"><mat-icon>arrow_back</mat-icon></button>
+        <button class="nav-button next" (click)="moveNext()"><mat-icon>arrow_forward</mat-icon></button>
+    </div>
+</div>
+  
