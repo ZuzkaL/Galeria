@@ -7,8 +7,9 @@ This Angular project, generated with [Angular CLI](https://github.com/angular/an
 To run the development server, follow these steps:
 
 1. Install Angular CLI.
-2. Run `ng serve` for a dev server.
-3. Navigate to `http://localhost:4200/`. The application will automatically reload when you make changes to the source files.
+2. Run `npm i`
+3. Run `ng serve` for a dev server.
+4. Navigate to `http://localhost:4200/`. The application will automatically reload when you make changes to the source files.
 
 Note: You might need to disable CORS for local development. If you are using Chrome on Windows, you can run the following command: `./chrome.exe --user-data-dir="C://chrome-dev-disabled-security" --disable-web-security --disable-site-isolation-trials`.
 
