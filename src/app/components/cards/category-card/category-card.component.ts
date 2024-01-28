@@ -4,6 +4,7 @@ import { ConfirmationDialogComponent, ConfirmationDialogData } from '../../dialo
 import { MatDialog } from '@angular/material/dialog';
 import { CategoriesComponent } from 'src/app/pages/categories/categories.component';
 import { SharedService } from 'src/app/services/shared.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-category-card',
@@ -21,7 +22,8 @@ export class CategoryCardComponent implements OnInit{
     private galleryApiService: GalleryApiService, 
     private dialog: MatDialog,
     private sharedService: SharedService,
-    private el: ElementRef
+    private el: ElementRef,
+    private translate: TranslateService
     ) {
   }
 
@@ -63,41 +65,42 @@ export class CategoryCardComponent implements OnInit{
       });
   }
 
-  getString(){
-    let number = this.numberOfImages
-    if(!number && number!=0)
-      return ""
-    if (number == 1 ) {
-      return "fotka"
+  getString() {
+    let number = this.numberOfImages;
+    if (!number && number !== 0) {
+      return "";
+    }
+  
+    if (number === 1) {
+      return this.translate.instant("1photo")
+    } else if (number > 1 && number < 5) {
+      return this.translate.instant("2-4photo")
     } else {
-      if (number>1 && number<5) {
-        return "fotky"
-      } else {
-        return "fotiek"
-      }
+      return this.translate.instant("photos")
     }
   }
+  
 
 
   onDelete() {
     const confirmationDialogData: ConfirmationDialogData = {
-      title: 'Odstrániť kategóriu "' + this.category.name + '"?',
-      description: 'Naozaj si želáte odstrániť kategóriu "' + this.category.name + '"?',
-      confirmButtonText: 'Áno',
-      cancelButtonText: 'Nie',
+      title: this.translate.instant("delete-category-title")+' "' + this.category.name + '"?',
+      description: this.translate.instant("delete-category-description")+' "' + this.category.name + '"?',
+      confirmButtonText: this.translate.instant("yes"),
+      cancelButtonText: this.translate.instant("no"),
       onConfirm: () => {
         this.galleryApiService.deleteCategoryOrImageByPath(this.category.path)
           .then(() => {
             this.sharedService.triggerCategoriesReload();
           })
           .catch((error) => {
-            if (error.code === 404) {
+            if (error.code === 404) { 
               // Handle 404 error (category does not exist)
-              alert('Kategória neexistuje');
+              alert(this.translate.instant("category-not-found"));
             } else {
               // Handle other errors
               console.error('Error deleting category:', error);
-              alert('Pri vymazaní kategórie sa vyskytla chyba.');
+              alert(this.translate.instant("delete-category-error"));
             }
           });
       }

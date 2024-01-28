@@ -26,6 +26,7 @@ Then you can load from this site. (https://bart-galeria.web.app/categories)
 - Hosting
 - Do not show category that do not exist (there was one category that I get by /gallery and if I asked for it in /gallery/{{path}} it returned that this category do not exist)
 - If category name is longer that it should be, it will add ... to the end and trim string
+- i18n (sk, en)
 
 
 # Error handling in frontend
@@ -65,7 +66,6 @@ Then you can load from this site. (https://bart-galeria.web.app/categories)
 
 ## TODO
 
-- loaklizaciu
 - dark mode
 - upratat kod
 - v spravnom poradi napisat importy

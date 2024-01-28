@@ -1,17 +1,17 @@
 <div class="dialog-container">
     <div class="dialog-header">
       <span>
-        <h2 mat-dialog-title>Pridať kategóriu</h2>
+        <h2 mat-dialog-title>{{"add-category" | translate}}</h2>
       </span>
       <button mat-dialog-close class="close-button-dialog">x</button>
     </div>
     <div>
       <mat-form-field class="example-full-width" appearance="outline">
-        <mat-label>Názov kategórie</mat-label>
-        <input matInput #categoryName maxlength="256" placeholder="napr. Príroda" [(ngModel)]="name">
+        <mat-label>{{"Category-name" |translate}}</mat-label>
+        <input matInput #categoryName maxlength="256" [(ngModel)]="name">
       </mat-form-field>
-      <p class="error-text" *ngIf="doesCategoryWithThisNameExist">Daný názov kategórie už existuje, zadajte iný.</p>
+      <p class="error-text" *ngIf="doesCategoryWithThisNameExist">{{"category-name-exist"|translate}}</p>
     </div>
-    <button class="add-button-dialog" (click)="addCategory()">Pridať</button>
+    <button class="add-button-dialog" (click)="addCategory()">{{"Add"|translate}}</button>
   </div>
   

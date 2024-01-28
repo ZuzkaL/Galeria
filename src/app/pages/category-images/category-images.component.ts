@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AddCategoryImageDialogComponent } from 'src/app/components/dialogs/add-category-image-dialog/add-category-image-dialog.component';
 import { ConfirmationDialogData, ConfirmationDialogComponent } from 'src/app/components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { ImageOverlayComponent } from 'src/app/components/image-overlay/image-overlay.component';
@@ -21,7 +22,8 @@ export class CategoryImagesComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, 
     private galleryApiService: GalleryApiService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private translate: TranslateService
     ) {}
 
   ngOnInit(): void {
@@ -77,10 +79,10 @@ export class CategoryImagesComponent implements OnInit {
 
   onDeleteImage(index: number) {
     const confirmationDialogData: ConfirmationDialogData = {
-      title: 'Odstrániť obrázok?',
-      description: 'Naozaj si želáte odstrániť tento obrázok?',
-      confirmButtonText: 'Áno',
-      cancelButtonText: 'Nie',
+      title: this.translate.instant("delete-image-title"),
+      description: this.translate.instant("delete-image-description"),
+      confirmButtonText: this.translate.instant("yes"),
+      cancelButtonText: this.translate.instant("no"),
       onConfirm: () => {
         this.galleryApiService.deleteCategoryOrImageByPath(this.images[index].fullpath)
         .then(
@@ -90,11 +92,11 @@ export class CategoryImagesComponent implements OnInit {
         ).catch((error) => {
           if (error.code === 404) {
             // Handle 404 error (category does not exist)
-            alert('Obrázok neexistuje');
+            alert(this.translate.instant("image-not-found"));
           } else {
             // Handle other errors
             console.error('Error deleting image:', error);
-            alert('Pri vymazaní obrázka sa vyskytla chyba.');
+            alert(this.translate.instant("delete-image-error"));
           }
         });
       }

@@ -10,15 +10,15 @@
         </div>
         <div class="card add-card clickable" id="add-image-card" (click)="openAddImageDialog()">
             <div class="plus-icon">+</div>
-            <p>Pridať fotky</p>
+            <p>{{"add-image" | translate}}</p>
         </div>
     </div>
 
     <div *ngIf="images.length === 0">
-        <p>Pre kategóriu {{ gallery.name }} neexistujú žiadne obrázky.</p>
+        <p>{{"for-category" | translate}} {{ gallery.name }} {{"no-images"|translate}}</p>
     </div>
 </div>
 <div *ngIf="!doesThisCategoryExist">
-    <p class="error-text">Daná kategória neexistuje!</p>
-    <p class="arrow-text clickable" [routerLink]="['/']">Prejdite na stránku kategórií</p>
+    <p class="error-text">{{"category-not-exist"|translate}}</p>
+    <p class="arrow-text clickable" [routerLink]="['/']">{{"go-to-categories-page"|translate}}</p>
 </div>

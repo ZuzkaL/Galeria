@@ -1,4 +1,11 @@
 <div id="body-container" [style.maxWidth]="calcWidthOfContainer()">
-  <p id="title">Fotogaléria</p>
+  <span id="title">{{"Gallery" | translate}}</span>
+  <span class="right">
+    <mat-icon [matMenuTriggerFor]="menu" class="small-icon clickable">language</mat-icon>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="chooseLanguage('sk')">{{ "Slovak" | translate}}</button>
+                <button mat-menu-item (click)="chooseLanguage('en')">{{ "English" | translate}}</button>
+            </mat-menu>
+  </span>
   <router-outlet></router-outlet>
 </div>

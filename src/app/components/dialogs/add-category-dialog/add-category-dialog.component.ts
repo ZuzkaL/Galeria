@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 import { GalleryApiService } from 'src/app/services/gallery-api.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class AddCategoryDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<AddCategoryDialogComponent>,
-    private galleryApiService: GalleryApiService
+    private galleryApiService: GalleryApiService,
+    private tranlsate: TranslateService
   ) { }
 
   handleFileInput(event: Event): void {
@@ -38,7 +40,6 @@ export class AddCategoryDialogComponent {
   }
 
   addCategory() {
-    console.log('Category Name:', this.name);
     this.galleryApiService.createCategory(this.name)
       .then(response => {
         console.log('Category created successfully:', response);
@@ -51,7 +52,7 @@ export class AddCategoryDialogComponent {
           this.doesCategoryWithThisNameExist = true
         } else {
             if(error.code==400){
-              window.alert("Obrázok nespĺňa požiadavky.")
+              window.alert(this.tranlsate.instant("image-does-not-meet-requirements"))
             }
           }
       });

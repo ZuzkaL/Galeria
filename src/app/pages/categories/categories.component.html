@@ -1,17 +1,17 @@
 <!-- categories.component.html -->
 <div *ngIf="!isLoading">
     <div>
-        <span id="title">Kategórie</span>
+        <span id="title">{{"Categories"|translate}}</span>
         <span class="right">
             <mat-icon [matMenuTriggerFor]="menu" class="small-icon clickable">sort</mat-icon>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="toggleSortOrder(true)">Zoradiť vzostupne</button>
-                <button mat-menu-item (click)="toggleSortOrder(false)">Zoradiť zostupne</button>
+                <button mat-menu-item (click)="toggleSortOrder(true)">{{ "Sort-ascending"|translate }}</button>
+                <button mat-menu-item (click)="toggleSortOrder(false)">{{"Sort-descending"|translate}}</button>
             </mat-menu>
         </span>
         <span class="right">
             <div class="custom-search-input right">
-                <input type="text" placeholder="Vyhľadať" [(ngModel)]="searchValue" class="input-field"
+                <input type="text" [placeholder]="'search' | translate" [(ngModel)]="searchValue" class="input-field"
                     (ngModelChange)="onInputChange()" />
                 <div class="search-icon-container">
                     <mat-icon class="small-icon">search</mat-icon>
@@ -25,11 +25,11 @@
         </div>
         <div class="card clickable add-card" id="add-category-card" (click)="openAddCategoryDialog()">
             <div class="plus-icon">+</div>
-            <p>Pridať kategóriu</p>
+            <p>{{"add-category"|translate}}</p>
         </div>
     </div>
 
     <div *ngIf="categories.length === 0">
-        <p>Zatiaľ neexistujú žiadne kategórie.</p>
+        <p>{{"no-categories" | translate}}</p>
     </div>
 </div>

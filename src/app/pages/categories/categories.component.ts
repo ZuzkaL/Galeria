@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 import { AddCategoryDialogComponent } from 'src/app/components/dialogs/add-category-dialog/add-category-dialog.component';
 import { GalleryApiService } from 'src/app/services/gallery-api.service';
 import { SharedService } from 'src/app/services/shared.service';
@@ -19,8 +20,10 @@ export class CategoriesComponent implements OnInit {
   constructor(
     private galleryApiService: GalleryApiService,
     public dialog: MatDialog,
-    private sharedService: SharedService 
-  ) { }
+    private sharedService: SharedService ,
+    private translate: TranslateService
+  ) { 
+  }
 
   ngOnInit(): void {
     this.loadCategories();

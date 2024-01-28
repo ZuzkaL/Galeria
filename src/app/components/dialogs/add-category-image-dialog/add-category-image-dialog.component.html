@@ -1,7 +1,7 @@
 <div class="dialog-container">
     <div class="dialog-header">
       <span>
-        <h2 mat-dialog-title>Pridať obrázok do kategórie {{data.categoryName}}</h2>
+        <h2 mat-dialog-title>{{"add-image" | translate}} {{data.categoryName}}</h2>
       </span>
       <button mat-dialog-close class="close-button-dialog">x</button>
     </div>
@@ -10,16 +10,16 @@
         <label for="fileInput" (drop)="handleDrop($event)" (dragover)="handleDragOver($event)">
           <div *ngIf="!selectedImage" class="input-label">
             <img src="../../../../assets/image.png" alt="Image" class="icon">
-            <p id="first-label">Sem presuňte fotky</p>
-            <p id="second-label">alebo</p>
-            <p id="third-label">Vyberte súbor</p>
+            <p id="first-label">{{ "Drag-here" | translate}}</p>
+            <p id="second-label">{{"or" | translate}}</p>
+            <p id="third-label">{{"choose-file"| translate}} </p>
           </div>
           <img *ngIf="selectedImage" [src]="selectedImage" alt="Selected Image" id="preview-image">
         </label>
         <input type="file" id="fileInput" (change)="handleFileInput($event)" style="display: none;">
       </div>
-      <p class="error-text" *ngIf="!isChosenImageJPG">Vyberte obrázok typu jpg.</p>
+      <p class="error-text" *ngIf="!isChosenImageJPG">{{"select-jpg-image" | translate}}</p>
     </div>
-    <button class="add-button-dialog" (click)="addCategoryImage()">Pridať</button>
+    <button class="add-button-dialog" (click)="addCategoryImage()">{{"Add" | translate}}</button>
   </div>
   

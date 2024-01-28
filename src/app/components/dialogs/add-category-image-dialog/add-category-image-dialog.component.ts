@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 import { GalleryApiService } from 'src/app/services/gallery-api.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class AddCategoryImageDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<AddCategoryImageDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, 
-    private galleryApiService: GalleryApiService
+    private galleryApiService: GalleryApiService,
+    private translate: TranslateService
   ) { }
 
     isChosenImageJPG=true
@@ -65,10 +67,10 @@ export class AddCategoryImageDialogComponent {
           console.error('Error uploading image:', error);
           // 400 Invalid request - file not found.
           if(error.code==400)
-          window.alert("Súbor nebol nájdený. Skúste to neskôr.")
+          window.alert(this.translate.instant("file-not-found"))
           // 404 gallery not found
           if(error.code==404)
-          window.alert("Kategória nebola nájdená. Skúste to neskôr.")
+          window.alert(this.translate.instant("category-not-found"))
         });
     }
   }

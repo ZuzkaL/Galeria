@@ -36,7 +36,6 @@ export class ImageCardComponent implements OnInit {
       return this.galleryApiService.getImageUrl(width, height, path);
     } else {
       // Handle the case where the element is not found
-      console.error('Element with ID "image-container" not found.');
       return ''; // or return a default URL or handle it as needed
     }
   }
