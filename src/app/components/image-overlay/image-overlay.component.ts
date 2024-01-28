@@ -67,8 +67,8 @@ export class ImageOverlayComponent {
     this.isLoading = true;
   
     try {
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
+      const vw = Math.round(window.innerWidth*0.8);
+      const vh = Math.round(window.innerHeight*0.8);
   
       const imageUrl = this.galleryApiService.getImageUrl(vw, vh, this.allImages[this.index].fullpath);
   
