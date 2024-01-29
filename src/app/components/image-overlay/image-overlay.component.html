@@ -1,5 +1,7 @@
 <div id="overlay-container" *ngIf="index != null" (click)="closeOverlayOnOutsideClick($event)">
   <div id="overlay-content" (click)="$event.stopPropagation()">
+
+    <!-- Close button in the top-right corner -->
     <button class="close-button" (click)="closeOverlay()"><mat-icon>close</mat-icon></button>
 
     <!-- Skeleton loader for image -->
@@ -9,12 +11,14 @@
 
     <!-- Actual image content -->
     <ng-template #imageContent>
-      <img [src]="url" alt="{{ allImages[index].alt }}">
-    </ng-template>
+      <!-- Image container with centered content -->
+      <div class="image-container">
+        <img [src]="url" alt="{{ allImages[index].alt }}">
+      </div>
 
-    <button class="nav-button previous" (click)="movePrevious()"
-      [disabled]="isLoading"><mat-icon>arrow_back</mat-icon></button>
-    <button class="nav-button next" (click)="moveNext()"
-      [disabled]="isLoading"><mat-icon>arrow_forward</mat-icon></button>
+      <!-- Navigation buttons -->
+      <button class="nav-button previous" (click)="movePrevious()" [disabled]="isLoading"><mat-icon>arrow_back</mat-icon></button>
+      <button class="nav-button next" (click)="moveNext()" [disabled]="isLoading"><mat-icon>arrow_forward</mat-icon></button>
+    </ng-template>
   </div>
 </div>

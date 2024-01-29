@@ -14,7 +14,7 @@ export class ImageOverlayComponent {
   allImages: any[] = []
   index: number;
   isLoading: boolean = true;
-  
+
   ngOnInit(): void {
     // Subscribe to keyboard events
     document.addEventListener('keydown', this.handleKeyDown.bind(this));
@@ -90,10 +90,7 @@ export class ImageOverlayComponent {
     this.isLoading = true;
   
     try {
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-  
-      const imageUrl = this.galleryApiService.getImageUrl(vw, vh, this.allImages[this.index].fullpath);
+      const imageUrl = this.galleryApiService.getImageUrl(0, 0, this.allImages[this.index].fullpath);
   
       // Image URL fetched successfully
       this.url = imageUrl;
