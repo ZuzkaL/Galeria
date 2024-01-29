@@ -39,5 +39,6 @@
     "go-to-categories-page": "Prejdite na stránku kategórií",
     "generatePreviewError": "Chyba pri generovaní náhľadu obrázka",
     "imageNotFound": "Obrázok nenájdený",
-    "genericError": "Vyskytla sa chyba"
+    "genericError": "Vyskytla sa chyba",
+    "photoUploadError": "Zdá sa že nastal problém pri pridávaní fotky. Uistite sa, že máte otvorený prehliadač s vypnutími CORS."
 }

@@ -39,5 +39,6 @@
     "go-to-categories-page": "Go to Categories Page",
     "generatePreviewError": "Error generating image preview",
     "imageNotFound": "Image not found",
-    "genericError": "An error occurred"
+    "genericError": "An error occurred",
+    "photoUploadError": "It seems that there is an issue with adding a photo. Make sure you have your browser open with CORS disabled."
 }

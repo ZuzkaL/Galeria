@@ -64,13 +64,16 @@ export class AddCategoryImageDialogComponent {
           this.dialogRef.close({ success: true });
         })
         .catch(error => {
-          console.error('Error uploading image:', error);
+          console.error('Error uploading image 2:', error);
           // 400 Invalid request - file not found.
           if (error.code == 400)
             window.alert(this.translate.instant("file-not-found"))
           // 404 gallery not found
           if (error.code == 404)
             window.alert(this.translate.instant("category-not-found"))
+          if(error.isTrusted && error.type=='error'){
+            window.alert(this.translate.instant("photoUploadError"))
+          }
         });
     }
   }
