@@ -14,7 +14,30 @@ export class ImageOverlayComponent {
   allImages: any[] = []
   index: number;
   isLoading: boolean = true;
+  
   ngOnInit(): void {
+    // Subscribe to keyboard events
+    document.addEventListener('keydown', this.handleKeyDown.bind(this));
+  }
+
+  ngOnDestroy(): void {
+    // Unsubscribe from keyboard events when the component is destroyed
+    document.removeEventListener('keydown', this.handleKeyDown.bind(this));
+  }
+
+   // Handle keyboard events
+   private handleKeyDown(event: KeyboardEvent): void {
+    switch (event.key) {
+      case 'ArrowRight':
+        this.moveNext();
+        break;
+      case 'ArrowLeft':
+        this.movePrevious();
+        break;
+      case 'Escape':
+        this.closeOverlay();
+        break;
+    }
   }
 
   constructor(
