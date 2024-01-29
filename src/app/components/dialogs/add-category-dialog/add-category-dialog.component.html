@@ -3,12 +3,14 @@
     <span>
       <h2 mat-dialog-title>{{"add-category" | translate}}</h2>
     </span>
-    <button mat-dialog-close class="close-button-dialog">x</button>
+    <button mat-dialog-close class="close-button-dialog">
+      <mat-icon class="close-button-dialog-icon">close</mat-icon>
+    </button>
   </div>
   <div>
     <mat-form-field class="example-full-width" appearance="outline">
       <mat-label>{{"Category-name" |translate}}</mat-label>
-      <input matInput #categoryName maxlength="256" [(ngModel)]="name">
+      <input required matInput #categoryName maxlength="256" [(ngModel)]="name">
     </mat-form-field>
     <p class="error-text" *ngIf="doesCategoryWithThisNameExist">{{"category-name-exists"|translate}}</p>
   </div>
