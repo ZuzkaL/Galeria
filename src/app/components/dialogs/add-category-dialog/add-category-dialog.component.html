@@ -10,7 +10,7 @@
       <mat-label>{{"Category-name" |translate}}</mat-label>
       <input matInput #categoryName maxlength="256" [(ngModel)]="name">
     </mat-form-field>
-    <p class="error-text" *ngIf="doesCategoryWithThisNameExist">{{"category-name-exist"|translate}}</p>
+    <p class="error-text" *ngIf="doesCategoryWithThisNameExist">{{"category-name-exists"|translate}}</p>
   </div>
   <button class="add-button-dialog" (click)="addCategory()">{{"Add"|translate}}</button>
 </div>
