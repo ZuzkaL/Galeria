@@ -2,15 +2,16 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GalleryApiService {
-  private apiUrl = 'http://api.programator.sk'; 
-  
+  private apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient) { }
 
   getCategories(): Promise<any> {
     // 200 ok
@@ -84,11 +85,11 @@ export class GalleryApiService {
       .catch(this.handleError);
   }
 
-  getImageUrl(width:number,height:number,path:string){
+  getImageUrl(width: number, height: number, path: string) {
     // 200 - return image preview
     // 404 photo not found
     // 500 The photo preview can't be generated.
-    return this.apiUrl+"/images/"+width+"x"+height+"/"+path;
+    return this.apiUrl + "/images/" + width + "x" + height + "/" + path;
   }
 
   private handleError(error: HttpErrorResponse): Promise<any> {
