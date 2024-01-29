@@ -55,7 +55,7 @@ export class AddCategoryImageDialogComponent {
   }
 
   addCategoryImage(): void {
-    // Make sure you have a valid path for your category
+    // Making sure that it is a valid path for image
     if (this.selectedImage) {
       const file = this.dataURLtoFile(this.selectedImage, 'image.png'); // Convert base64 to File
       this.galleryApiService.uploadImage(this.data?.categoryPath, file)

@@ -62,7 +62,7 @@ export class ImageOverlayComponent {
     this.updateImageUrl();
   }
 
-  //  Updates the image URL based on the current index and dimensions of the viewport.
+  // Updates the image URL based on the current index and dimensions of the viewport.
   private updateImageUrl() {
     this.isLoading = true;
   

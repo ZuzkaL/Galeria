@@ -33,7 +33,7 @@ export class CategoryImagesComponent implements OnInit {
     });
   }
 
-  //  Loads images for the selected category.
+  // Loads images for the selected category.
   loadCategoryImages() {
     this.galleryApiService.getCategoryImages(this.categoryPath)
       .then((category) => {
