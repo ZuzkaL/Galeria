@@ -13,7 +13,7 @@ export class AppComponent {
   @HostListener('window:resize', ['$event'])
   calcWidthOfContainer() {
     const vw = window.innerWidth;
-    const result = (260 * Math.floor((vw / 270)));
+    const result = ((304+32) * Math.floor((vw / (304+32))));
     return result + "px"
   }
 

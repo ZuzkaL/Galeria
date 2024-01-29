@@ -14,16 +14,16 @@ body {
 @border-radius: 4px;
 @box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 @transition-speed: 0.3s;
-@card-width:240px;
-@card-height:220px;
-@category-card-image-height:180px;
+@card-width:304px;
+@card-height:295px;
+@category-card-image-height:228px;
 
 .card {
   border-radius: @border-radius;
   background-color: white;
   overflow: hidden;
   box-shadow: @box-shadow;
-  margin: 10px;
+  margin: 16px;
   display: flex;
   flex-direction: column;
   width: @card-width;
@@ -39,7 +39,7 @@ body {
   p {
     margin-left: auto;
     margin-right: auto;
-    font-size: 13px;
+    font-size: 16px;
   }
 
   .plus-icon {
@@ -50,7 +50,6 @@ body {
     color: @lightGray;
     width: 24px;
     height: 24px;
-    font-size: 18px;
     border-radius: 8px;
   }
 }
@@ -70,7 +69,7 @@ body {
 @dialog-button-background: black;
 @dialog-button-text-color: white;
 @dialog-padding: 10px;
-@dialog-width:420px;
+@dialog-width:520px;
 
 .add-button-dialog {
   text-align: center;
@@ -125,6 +124,7 @@ body {
 
 .right {
   float: right;
+  padding-right: 16px;
 }
 
 .custom-search-input {
@@ -221,4 +221,13 @@ body {
 //mat-input focused color
 ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
   color: rgb(240,240,240)!important;
+}
+
+.header{
+  margin-bottom: 40px;
+  font-size: 18px;
+}
+
+.mat-plus-icon{
+  transform: scale(0.8);
 }

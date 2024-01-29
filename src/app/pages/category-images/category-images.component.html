@@ -1,5 +1,5 @@
 <div *ngIf="!isLoading && doesThisCategoryExist">
-    <div [routerLink]="['/']" class="arrow-text clickable">
+    <div [routerLink]="['/']" class="arrow-text clickable header">
         {{gallery.name}}
     </div>
     <div id="images-container">
@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="card add-card clickable" id="add-image-card" (click)="openAddImageDialog()">
-            <div class="plus-icon">+</div>
+            <div class="plus-icon"><mat-icon class="mat-plus-icon">add</mat-icon></div>
             <p>{{"add-image" | translate}}</p>
         </div>
     </div>

@@ -1,6 +1,6 @@
 <!-- categories.component.html -->
 <div *ngIf="!isLoading">
-    <div>
+    <div class="header">
         <span id="title">{{"Categories"|translate}}</span>
         <span class="right">
             <mat-icon [matMenuTriggerFor]="menu" class="small-icon clickable">sort</mat-icon>
@@ -24,7 +24,7 @@
             <app-category-card [category]="category"></app-category-card>
         </div>
         <div class="card clickable add-card" id="add-category-card" (click)="openAddCategoryDialog()">
-            <div class="plus-icon">+</div>
+            <div class="plus-icon"><mat-icon  class="mat-plus-icon">add</mat-icon></div>
             <p>{{"add-category"|translate}}</p>
         </div>
     </div>
