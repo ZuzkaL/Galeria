@@ -4,6 +4,8 @@ import { ConfirmationDialogComponent, ConfirmationDialogData } from '../../dialo
 import { MatDialog } from '@angular/material/dialog';
 import { SharedService } from 'src/app/services/shared.service';
 import { TranslateService } from '@ngx-translate/core';
+import { switchMap, catchError, finalize } from 'rxjs/operators';
+import { EMPTY, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-category-card',
@@ -61,15 +63,21 @@ export class CategoryCardComponent implements OnInit {
   // Load category images and update relevant properties.
   loadCategoryImages() {
     this.galleryApiService.getCategoryImages(this.category.path)
-      .then((category) => {
-        this.numberOfImages = category.images.length;
-        this.isLoaded = true;
-      })
-      .catch((error) => {
-        if (error.code === 404) {
-          this.isLoadedRight = false;
+      .pipe(
+        catchError((error) => {
+          if (error.code === 404) {
+            this.isLoadedRight = false;
+          }
+          // Rethrow the error to propagate it to the next subscriber
+          return throwError(error);
+        }),
+        finalize(() => {
+          // This block will be executed whether the request is successful or fails
           this.isLoaded = true;
-        }
+        })
+      )
+      .subscribe((category:any) => {
+        this.numberOfImages = category.images.length;
       });
   }
 
@@ -91,34 +99,39 @@ export class CategoryCardComponent implements OnInit {
   }
 
 
-  // Handle category deletion with a confirmation dialog.
-  onDelete() {
-    const confirmationDialogData: ConfirmationDialogData = {
-      title: this.translate.instant('delete-category-title') + ' "' + this.category.name + '"?',
-      description: this.translate.instant('delete-category-description') + ' "' + this.category.name + '"?',
-      confirmButtonText: this.translate.instant('yes'),
-      cancelButtonText: this.translate.instant('no'),
-      onConfirm: () => {
-        this.galleryApiService.deleteCategoryOrImageByPath(this.category.path)
-          .then(() => {
+  
+// Handle category deletion with a confirmation dialog.
+onDelete() {
+  const confirmationDialogData: ConfirmationDialogData = {
+    title: this.translate.instant('delete-category-title') + ' "' + this.category.name + '"?',
+    description: this.translate.instant('delete-category-description') + ' "' + this.category.name + '"?',
+    confirmButtonText: this.translate.instant('yes'),
+    cancelButtonText: this.translate.instant('no'),
+    onConfirm: () => {
+      this.galleryApiService.deleteCategoryOrImageByPath(this.category.path)
+        .pipe(
+          switchMap(() => {
             this.sharedService.triggerCategoriesReload();
-          })
-          .catch((error) => {
+            return EMPTY; // Return an empty observable to fulfill the pipe
+          }),
+          catchError((error) => {
             if (error.code === 404) {
               alert(this.translate.instant('category-not-found'));
             } else {
               console.error('Error deleting category:', error);
               alert(this.translate.instant('delete-category-error'));
             }
-          });
-      }
-    };
+            return EMPTY; // Return an empty observable to fulfill the pipe
+          })
+        )
+        .subscribe();
+    }
+  };
 
-    this.dialog.open(ConfirmationDialogComponent, {
-      data: confirmationDialogData
-    });
-  }
-
+  this.dialog.open(ConfirmationDialogComponent, {
+    data: confirmationDialogData
+  });
+}
 
   // Truncate the category name if it exceeds the maximum character limit.
   getCategoryName() {

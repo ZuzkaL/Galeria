@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
+import { throwError } from 'rxjs';
+import { catchError, finalize } from 'rxjs/operators';
 import { AddCategoryDialogComponent } from 'src/app/components/dialogs/add-category-dialog/add-category-dialog.component';
 import { GalleryApiService } from 'src/app/services/gallery-api.service';
 import { SharedService } from 'src/app/services/shared.service';
@@ -36,14 +38,22 @@ export class CategoriesComponent implements OnInit {
   // Loads categories from the gallery API.
   loadCategories() {
     this.galleryApiService.getCategories()
-      .then((categories) => {
+      .pipe(
+        catchError((error) => {
+          console.error('Error loading categories:', error);
+  
+          // Rethrow the error to propagate it to the next subscriber
+          return throwError(error);
+        }),
+        finalize(() => {
+          // This block will be executed whether the request is successful or fails
+          this.isLoading = false;
+        })
+      )
+      .subscribe((categories) => {
         this.categories = categories.galleries;
         this.filterCategories();
-        this.isLoading = false
-        this.shownCategories = categories.galleries
-      })
-      .catch((error) => {
-        console.error('Error loading categories:', error);
+        this.shownCategories = categories.galleries;
       });
   }
 

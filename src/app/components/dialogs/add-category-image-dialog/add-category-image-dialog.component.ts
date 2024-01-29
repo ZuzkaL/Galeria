@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
+import { catchError, throwError } from 'rxjs';
 import { GalleryApiService } from 'src/app/services/gallery-api.service';
 
 @Component({
@@ -55,25 +56,30 @@ export class AddCategoryImageDialogComponent {
   }
 
   addCategoryImage(): void {
-    // Making sure that it is a valid path for image
+    // Making sure that it is a valid path for the image
     if (this.selectedImage) {
       const file = this.dataURLtoFile(this.selectedImage, 'image.png'); // Convert base64 to File
       this.galleryApiService.uploadImage(this.data?.categoryPath, file)
-        .then(response => {
+        .pipe(
+          catchError((error) => {
+            console.error('Error uploading image:', error);
+  
+            // Handle different error cases
+            if (error.code == 400) {
+              window.alert(this.translate.instant("file-not-found"));
+            } else if (error.code == 404) {
+              window.alert(this.translate.instant("category-not-found"));
+            } else if (error.isTrusted && error.type == 'error') {
+              window.alert(this.translate.instant("photoUploadError"));
+            }
+  
+            // Rethrow the error to propagate it to the next subscriber
+            return throwError(error);
+          })
+        )
+        .subscribe(response => {
           console.log('Image uploaded successfully:', response);
           this.dialogRef.close({ success: true });
-        })
-        .catch(error => {
-          console.error('Error uploading image 2:', error);
-          // 400 Invalid request - file not found.
-          if (error.code == 400)
-            window.alert(this.translate.instant("file-not-found"))
-          // 404 gallery not found
-          if (error.code == 404)
-            window.alert(this.translate.instant("category-not-found"))
-          if(error.isTrusted && error.type=='error'){
-            window.alert(this.translate.instant("photoUploadError"))
-          }
         });
     }
   }
