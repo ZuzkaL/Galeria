@@ -14,7 +14,7 @@ export class ImageCardComponent implements OnInit {
   showDeleteButton = false;
   isDeleted = false;
   imageUrl = '';
-  isImageLoading=true
+  isImageLoading = true
 
   constructor(
     private galleryApiService: GalleryApiService,
@@ -31,12 +31,12 @@ export class ImageCardComponent implements OnInit {
 
   getImageUrl(path: string) {
     const imageContainer = this.el.nativeElement.querySelector('#image-container');
-  
+
     try {
       if (imageContainer) {
         const width = imageContainer.clientWidth;
         const height = imageContainer.clientHeight;
-        
+
         const url = this.galleryApiService.getImageUrl(width, height, path);
         const img = new Image();
         img.onload = () => {
@@ -50,11 +50,11 @@ export class ImageCardComponent implements OnInit {
         };
         img.src = url;
       } else {
-        this.imageUrl =  '../../../assets/placeholder.jpg';
+        this.imageUrl = '../../../assets/placeholder.jpg';
       }
-    } catch (error:any) {
+    } catch (error: any) {
       console.error('Error updating image URL b:', error);
-  
+
       // Handle different error cases
       if (error.code === 404) {
         // Image not found
@@ -62,8 +62,8 @@ export class ImageCardComponent implements OnInit {
       } else if (error.code === 500) {
         // Error generating image preview, handle it as needed
         window.alert(this.translate.instant("generatePreviewError"))
-      } 
-        this.imageUrl =  '../../../assets/placeholder.jpg';
+      }
+      this.imageUrl = '../../../assets/placeholder.jpg';
     }
   }
 

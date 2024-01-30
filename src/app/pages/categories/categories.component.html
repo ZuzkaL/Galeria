@@ -10,7 +10,7 @@
             </mat-menu>
         </span>
         <span class="right">
-            <div class="custom-search-input right">
+            <div class="right custom-search-input">
                 <input type="text" [placeholder]="'search' | translate" [(ngModel)]="searchValue" class="input-field"
                     (ngModelChange)="onInputChange()" />
                 <div class="search-icon-container">
@@ -24,7 +24,7 @@
             <app-category-card [category]="category"></app-category-card>
         </div>
         <div class="card clickable add-card" id="add-category-card" (click)="openAddCategoryDialog()">
-            <div class="plus-icon"><mat-icon  class="mat-plus-icon">add</mat-icon></div>
+            <div class="plus-icon"><mat-icon class="mat-plus-icon">add</mat-icon></div>
             <p>{{"add-category"|translate}}</p>
         </div>
     </div>

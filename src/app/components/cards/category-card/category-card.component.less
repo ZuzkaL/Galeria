@@ -34,7 +34,8 @@ img {
   border-radius: 12px;
   font-size: 12px;
 }
-.skeleton{
+
+.skeleton {
   width: @card-width;
   height: @category-card-image-height;
   background-color: #f0f0f0;
@@ -48,14 +49,15 @@ img {
   left: 0;
   width: @card-width;
   height: @category-card-image-height;
-  background: linear-gradient(90deg, transparent, #e0e0e0, transparent); /* Gradient effect to simulate animation */
-  animation: loadingAnimation 1.5s infinite; /* Animation to create a shimmer effect */
+  background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
+  animation: loadingAnimation 1.5s infinite;
 }
 
 @keyframes loadingAnimation {
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(100%);
   }

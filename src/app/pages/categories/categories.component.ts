@@ -41,7 +41,7 @@ export class CategoriesComponent implements OnInit {
       .pipe(
         catchError((error) => {
           console.error('Error loading categories:', error);
-  
+
           // Rethrow the error to propagate it to the next subscriber
           return throwError(error);
         }),

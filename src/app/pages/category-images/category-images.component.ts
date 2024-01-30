@@ -40,12 +40,12 @@ export class CategoryImagesComponent implements OnInit {
       .pipe(
         catchError((error) => {
           console.error('Error loading category images:', error);
-  
+
           // Handle 404 error (category does not exist)
           if (error.code == 404) {
             this.doesThisCategoryExist = false;
           }
-  
+
           // Rethrow the error to propagate it to the next subscriber
           return throwError(error);
         }),
@@ -115,7 +115,7 @@ export class CategoryImagesComponent implements OnInit {
                 console.error('Error deleting image:', error);
                 alert(this.translate.instant("delete-image-error"));
               }
-  
+
               // Rethrow the error to propagate it to the next subscriber
               return throwError(error);
             })
@@ -125,7 +125,7 @@ export class CategoryImagesComponent implements OnInit {
           });
       }
     };
-  
+
     this.dialog.open(ConfirmationDialogComponent, {
       data: confirmationDialogData
     });

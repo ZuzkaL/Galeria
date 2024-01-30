@@ -1,4 +1,4 @@
-import { Component,  Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { GalleryApiService } from 'src/app/services/gallery-api.service';
 import { ConfirmationDialogComponent, ConfirmationDialogData } from '../../dialogs/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -19,7 +19,7 @@ export class CategoryCardComponent implements OnInit {
   isLoadedRight = true;
   isLoaded = false;
   isImageLoading = true
-  imageUrl=""
+  imageUrl = ""
 
   constructor(
     private galleryApiService: GalleryApiService,
@@ -33,31 +33,27 @@ export class CategoryCardComponent implements OnInit {
     this.getImageUrl(this.category.image?.fullpath)
   }
 
-  
- 
+
+
 
   getImageUrl(path: string) {
-    console.log("aaaa")
-  
     try {
-        console.log("aa")
-        
-        const url = this.galleryApiService.getImageUrl(304, 228, path);
-        const img = new Image();
-        img.onload = () => {
-          this.isImageLoading = false
-          this.imageUrl = url
-        };
-        img.onerror = () => {
-          this.isImageLoading = false
-          this.imageUrl = '../../../assets/placeholder.jpg'
-          console.error('Error updating image URL:');
-        };
-        img.src = url;
-     
-    } catch (error:any) {
+      const url = this.galleryApiService.getImageUrl(304, 228, path);
+      const img = new Image();
+      img.onload = () => {
+        this.isImageLoading = false
+        this.imageUrl = url
+      };
+      img.onerror = () => {
+        this.isImageLoading = false
+        this.imageUrl = '../../../assets/placeholder.jpg'
+        console.error('Error updating image URL:');
+      };
+      img.src = url;
+
+    } catch (error: any) {
       console.error('Error updating image URL b:', error);
-  
+
       // Handle different error cases
       if (error.code === 404) {
         // Image not found
@@ -65,11 +61,11 @@ export class CategoryCardComponent implements OnInit {
       } else if (error.code === 500) {
         // Error generating image preview, handle it as needed
         window.alert(this.translate.instant("generatePreviewError"))
-      } 
-        this.imageUrl =  '../../../assets/placeholder.jpg';
+      }
+      this.imageUrl = '../../../assets/placeholder.jpg';
     }
   }
-  
+
   // Load category images and update relevant properties.
   loadCategoryImages() {
     this.galleryApiService.getCategoryImages(this.category.path)
@@ -86,7 +82,7 @@ export class CategoryCardComponent implements OnInit {
           this.isLoaded = true;
         })
       )
-      .subscribe((category:any) => {
+      .subscribe((category: any) => {
         this.numberOfImages = category.images.length;
       });
   }
@@ -109,39 +105,39 @@ export class CategoryCardComponent implements OnInit {
   }
 
 
-  
-// Handle category deletion with a confirmation dialog.
-onDelete() {
-  const confirmationDialogData: ConfirmationDialogData = {
-    title: this.translate.instant('delete-category-title') + ' "' + this.category.name + '"?',
-    description: this.translate.instant('delete-category-description') + ' "' + this.category.name + '"?',
-    confirmButtonText: this.translate.instant('yes'),
-    cancelButtonText: this.translate.instant('no'),
-    onConfirm: () => {
-      this.galleryApiService.deleteCategoryOrImageByPath(this.category.path)
-        .pipe(
-          switchMap(() => {
-            this.sharedService.triggerCategoriesReload();
-            return EMPTY; // Return an empty observable to fulfill the pipe
-          }),
-          catchError((error) => {
-            if (error.code === 404) {
-              alert(this.translate.instant('category-not-found'));
-            } else {
-              console.error('Error deleting category:', error);
-              alert(this.translate.instant('delete-category-error'));
-            }
-            return EMPTY; // Return an empty observable to fulfill the pipe
-          })
-        )
-        .subscribe();
-    }
-  };
 
-  this.dialog.open(ConfirmationDialogComponent, {
-    data: confirmationDialogData
-  });
-}
+  // Handle category deletion with a confirmation dialog.
+  onDelete() {
+    const confirmationDialogData: ConfirmationDialogData = {
+      title: this.translate.instant('delete-category-title') + ' "' + this.category.name + '"?',
+      description: this.translate.instant('delete-category-description') + ' "' + this.category.name + '"?',
+      confirmButtonText: this.translate.instant('yes'),
+      cancelButtonText: this.translate.instant('no'),
+      onConfirm: () => {
+        this.galleryApiService.deleteCategoryOrImageByPath(this.category.path)
+          .pipe(
+            switchMap(() => {
+              this.sharedService.triggerCategoriesReload();
+              return EMPTY; // Return an empty observable to fulfill the pipe
+            }),
+            catchError((error) => {
+              if (error.code === 404) {
+                alert(this.translate.instant('category-not-found'));
+              } else {
+                console.error('Error deleting category:', error);
+                alert(this.translate.instant('delete-category-error'));
+              }
+              return EMPTY; // Return an empty observable to fulfill the pipe
+            })
+          )
+          .subscribe();
+      }
+    };
+
+    this.dialog.open(ConfirmationDialogComponent, {
+      data: confirmationDialogData
+    });
+  }
 
   // Truncate the category name if it exceeds the maximum character limit.
   getCategoryName() {

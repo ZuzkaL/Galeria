@@ -63,7 +63,7 @@ export class AddCategoryImageDialogComponent {
         .pipe(
           catchError((error) => {
             console.error('Error uploading image:', error);
-  
+
             // Handle different error cases
             if (error.code == 400) {
               window.alert(this.translate.instant("file-not-found"));
@@ -72,7 +72,7 @@ export class AddCategoryImageDialogComponent {
             } else if (error.isTrusted && error.type == 'error') {
               window.alert(this.translate.instant("photoUploadError"));
             }
-  
+
             // Rethrow the error to propagate it to the next subscriber
             return throwError(error);
           })

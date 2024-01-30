@@ -28,7 +28,7 @@ export class AddCategoryDialogComponent {
       .pipe(
         catchError((error) => {
           console.error('Error creating category:', error);
-          
+
           // Handle error, if needed
           if (error.code == 409) {
             this.doesCategoryWithThisNameExist = true;
@@ -37,7 +37,7 @@ export class AddCategoryDialogComponent {
               window.alert(this.tranlsate.instant("image-does-not-meet-requirements"));
             }
           }
-  
+
           // Rethrow the error to propagate it to the next subscriber
           return throwError(error);
         })

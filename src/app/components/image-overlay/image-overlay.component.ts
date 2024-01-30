@@ -25,8 +25,8 @@ export class ImageOverlayComponent {
     document.removeEventListener('keydown', this.handleKeyDown.bind(this));
   }
 
-   // Handle keyboard events
-   private handleKeyDown(event: KeyboardEvent): void {
+  // Handle keyboard events
+  private handleKeyDown(event: KeyboardEvent): void {
     switch (event.key) {
       case 'ArrowRight':
         this.moveNext();
@@ -104,8 +104,8 @@ export class ImageOverlayComponent {
       };
       img.src = imageUrl;
     } catch (error: any) {
-      this.url='../../../assets/placeholder.jpg'
-      this.isLoading=false
+      this.url = '../../../assets/placeholder.jpg'
+      this.isLoading = false
       console.error('Error updating image URL:', error);
       if (error.code === 404) {
         // Image not found
@@ -113,9 +113,9 @@ export class ImageOverlayComponent {
       } else if (error.code === 500) {
         // Error generating image preview, handle it as needed
         window.alert(this.translate.instant("generatePreviewError"))
-      } 
+      }
     }
   }
-  
+
 
 }
