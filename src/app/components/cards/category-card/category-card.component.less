@@ -34,37 +34,29 @@ img {
   border-radius: 12px;
   font-size: 12px;
 }
-
-
-.skeleton-container {
-  width: 240px;
-  margin: 10px;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.skeleton{
+  width: @card-width;
+  height: @category-card-image-height;
+  background-color: #f0f0f0;
   position: relative;
 }
 
-.skeleton-image {
+.skeleton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: @card-width;
   height: @category-card-image-height;
-  background-color: #f0f0f0;
-  animation: shimmer 1.5s infinite;
+  background: linear-gradient(90deg, transparent, #e0e0e0, transparent); /* Gradient effect to simulate animation */
+  animation: loadingAnimation 1.5s infinite; /* Animation to create a shimmer effect */
 }
 
-.skeleton-info {
-  height: 20px;
-  width: 80%;
-  background-color: #f0f0f0;
-  margin: 10px auto;
-  animation: shimmer 1.5s infinite;
-}
-
-@keyframes shimmer {
+@keyframes loadingAnimation {
   0% {
-    background-position: -200%;
+    transform: translateX(-100%);
   }
-
   100% {
-    background-position: 200%;
+    transform: translateX(100%);
   }
 }

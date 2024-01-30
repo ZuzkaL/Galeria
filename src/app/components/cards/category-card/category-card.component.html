@@ -1,10 +1,11 @@
-<div *ngIf="isLoaded; else skeleton">
+<div *ngIf="isLoaded">
   <div *ngIf="isLoadedRight" class="card clickable" (mouseover)="showDeleteButton=true">
     <div [routerLink]="['/category', category.path]">
       <div id="image-container">
-        <img *ngIf="category.image !== undefined" [src]="getImageUrl(category.image?.fullpath)"
+        <div *ngIf="isImageLoading" class="skeleton"></div>
+        <img *ngIf="category.image !== undefined && !isImageLoading" [src]="imageUrl"
           alt="{{ category.image.name }}" class="image" />
-        <img *ngIf="category.image === undefined" src="../../../assets/placeholder.jpg" class="image">
+        <img *ngIf="category.image === undefined  && !isImageLoading" src="../../../assets/placeholder.jpg" class="image">
         <div class="image-count" *ngIf="numberOfImages!=null">{{ numberOfImages + " " + getString() }}</div>
       </div>
       <div class="info-container">
@@ -15,11 +16,3 @@
   </div>
 </div>
 
-
-<ng-template #skeleton>
-  <!-- Skeleton loader structure -->
-  <div class="skeleton-container">
-    <div class="skeleton-image"></div>
-    <div class="skeleton-info"></div>
-  </div>
-</ng-template>

@@ -14,6 +14,7 @@ export class ImageCardComponent implements OnInit {
   showDeleteButton = false;
   isDeleted = false;
   imageUrl = '';
+  isImageLoading=true
 
   constructor(
     private galleryApiService: GalleryApiService,
@@ -22,20 +23,34 @@ export class ImageCardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.imageUrl = this.getImageUrl(this.image?.fullpath);
+    setTimeout(() => {
+      this.getImageUrl(this.image?.fullpath);
+    });
   }
 
 
-  getImageUrl(path: string): string {
+  getImageUrl(path: string) {
     const imageContainer = this.el.nativeElement.querySelector('#image-container');
   
     try {
       if (imageContainer) {
         const width = imageContainer.clientWidth;
         const height = imageContainer.clientHeight;
-        return this.galleryApiService.getImageUrl(width, height, path);
+        
+        const url = this.galleryApiService.getImageUrl(width, height, path);
+        const img = new Image();
+        img.onload = () => {
+          this.isImageLoading = false
+          this.imageUrl = url
+        };
+        img.onerror = () => {
+          this.isImageLoading = false
+          this.imageUrl = '../../../assets/placeholder.jpg'
+          console.error('Error updating image URL:');
+        };
+        img.src = url;
       } else {
-        return  '../../../assets/placeholder.jpg';
+        this.imageUrl =  '../../../assets/placeholder.jpg';
       }
     } catch (error:any) {
       console.error('Error updating image URL b:', error);
@@ -48,7 +63,7 @@ export class ImageCardComponent implements OnInit {
         // Error generating image preview, handle it as needed
         window.alert(this.translate.instant("generatePreviewError"))
       } 
-        return  '../../../assets/placeholder.jpg';
+        this.imageUrl =  '../../../assets/placeholder.jpg';
     }
   }
 

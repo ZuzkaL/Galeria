@@ -88,17 +88,25 @@ export class ImageOverlayComponent {
   // Updates the image URL based on the current index and dimensions of the viewport.
   private updateImageUrl() {
     this.isLoading = true;
-  
+
     try {
       const imageUrl = this.galleryApiService.getImageUrl(0, 0, this.allImages[this.index].fullpath);
-  
-      // Image URL fetched successfully
-      this.url = imageUrl;
-      this.isLoading = false;
-    } catch (error:any) {
+
+      const img = new Image();
+      img.onload = () => {
+        this.isLoading = false
+        this.url = imageUrl
+      };
+      img.onerror = () => {
+        this.isLoading = false
+        this.url = '../../../assets/placeholder.jpg'
+        console.error('Error updating image URL:');
+      };
+      img.src = imageUrl;
+    } catch (error: any) {
+      this.url='../../../assets/placeholder.jpg'
+      this.isLoading=false
       console.error('Error updating image URL:', error);
-  
-      // Handle different error cases
       if (error.code === 404) {
         // Image not found
         window.alert(this.translate.instant("imageNotFound"))
@@ -106,8 +114,6 @@ export class ImageOverlayComponent {
         // Error generating image preview, handle it as needed
         window.alert(this.translate.instant("generatePreviewError"))
       } 
-      this.url =  '../../assets/placeholder.jpg';
-      this.isLoading = false;
     }
   }
   

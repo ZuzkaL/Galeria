@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Component,  Input, OnInit } from '@angular/core';
 import { GalleryApiService } from 'src/app/services/gallery-api.service';
 import { ConfirmationDialogComponent, ConfirmationDialogData } from '../../dialogs/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -18,34 +18,45 @@ export class CategoryCardComponent implements OnInit {
   showDeleteButton = false;
   isLoadedRight = true;
   isLoaded = false;
+  isImageLoading = true
+  imageUrl=""
 
   constructor(
     private galleryApiService: GalleryApiService,
     private dialog: MatDialog,
     private sharedService: SharedService,
-    private el: ElementRef,
-    private translate: TranslateService
+    private translate: TranslateService,
   ) { }
 
   ngOnInit(): void {
     this.loadCategoryImages();
+    this.getImageUrl(this.category.image?.fullpath)
   }
 
   
-  // Get the image URL using the width, height, and path.
-  getImageUrl(path: string): string {
-    const imageContainer = this.el.nativeElement.querySelector('#image-container');
+ 
+
+  getImageUrl(path: string) {
+    console.log("aaaa")
   
     try {
-      if (imageContainer) {
-        const width = imageContainer.clientWidth;
-        const height = imageContainer.clientHeight;
-        return this.galleryApiService.getImageUrl(width, height, path);
-      } else {
-        return  '../../../assets/placeholder.jpg';
-      }
+        console.log("aa")
+        
+        const url = this.galleryApiService.getImageUrl(304, 228, path);
+        const img = new Image();
+        img.onload = () => {
+          this.isImageLoading = false
+          this.imageUrl = url
+        };
+        img.onerror = () => {
+          this.isImageLoading = false
+          this.imageUrl = '../../../assets/placeholder.jpg'
+          console.error('Error updating image URL:');
+        };
+        img.src = url;
+     
     } catch (error:any) {
-      console.error('Error updating image URL a:', error);
+      console.error('Error updating image URL b:', error);
   
       // Handle different error cases
       if (error.code === 404) {
@@ -55,10 +66,9 @@ export class CategoryCardComponent implements OnInit {
         // Error generating image preview, handle it as needed
         window.alert(this.translate.instant("generatePreviewError"))
       } 
-        return  '../../../assets/placeholder.jpg';
+        this.imageUrl =  '../../../assets/placeholder.jpg';
     }
   }
-
   
   // Load category images and update relevant properties.
   loadCategoryImages() {

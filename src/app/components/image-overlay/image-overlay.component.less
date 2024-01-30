@@ -67,3 +67,32 @@
 .close-button:hover {
   background-color: @lightGray;
 }
+
+.skeleton-loader {
+  width: 50vw;
+  height: 50vh;
+  border-radius: 16px;
+  background-color: #f0f0f0; /* Light gray background color */
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-loader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #e0e0e0, transparent); /* Gradient effect to simulate animation */
+  animation: loadingAnimation 1.5s infinite; /* Animation to create a shimmer effect */
+}
+
+@keyframes loadingAnimation {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

@@ -2,11 +2,12 @@
   <div id="overlay-content" (click)="$event.stopPropagation()">
 
     <!-- Close button in the top-right corner -->
-    <button class="close-button" (click)="closeOverlay()"><mat-icon>close</mat-icon></button>
+    <button *ngIf="!isLoading" class="close-button" (click)="closeOverlay()"><mat-icon>close</mat-icon></button>
 
     <!-- Skeleton loader for image -->
     <div *ngIf="isLoading; else imageContent">
-      <mat-spinner></mat-spinner>
+      <div  class="skeleton-loader">
+      </div>
     </div>
 
     <!-- Actual image content -->

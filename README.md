@@ -15,6 +15,8 @@ Note: You might need to disable CORS for local development. If you are using Chr
 
 # Added Features
 
+## Version 1 (29.1.2023)
+
 - Animations (triggered on hover over cards)
 - Filtering and sorting based on category names
 - Deletion of categories
@@ -22,6 +24,15 @@ Note: You might need to disable CORS for local development. If you are using Chr
 - Exclude categories that do not exist (for example, a category obtained through /gallery, and if requested in /gallery/{{path}}, it returns that the category does not exist)
 - If the category name exceeds the expected length, it will add "..." to the end and trim the string
 - Internationalization (i18n) for Slovak (sk) and English (en)
+
+## Version 2 (30.1.2023)
+
+- Change text for dialog (add category) error
+- API URL is enviroment variable  
+- Keyboard navigation in image-overlay (arrow-left, arrow-right, escape)
+- Change UI/UX
+- Change image overlay
+- Skeleton loader on images
 
 ---
 
